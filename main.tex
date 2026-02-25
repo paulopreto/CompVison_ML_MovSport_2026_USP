@@ -2,141 +2,182 @@
 
 % Pacotes básicos e idioma
 \usepackage[utf8]{inputenc}
-\usepackage[brazil]{babel}
+\usepackage[portuguese]{babel}
 
-% --- CHAMA O PACOTE CUSTOMIZADO ---
+% --- CHAMA O PACOTE DE ESTILO CUSTOMIZADO ---
 \usepackage{preto}
 
-% Caminho para as imagens (garanta que logo_labiocom.png e GitHub-Logo.png estejam aqui)
+% Caminho para as imagens 
 \graphicspath{{./images/}}
 
-% Título e autor
-\title{Introdução ao Processamento de Imagens e Vídeos}
-\author{\href{http://www.eeferp.usp.br/pessoas/docentes/paulo-roberto-pereira-santiago}{Prof. Paulo Roberto Pereira Santiago, Ph.D.}}
-\date{\today}
+% --- Informações da Capa ---
+\title{Visão Computacional e Deep Learning na Análise do Movimento de Atletas}
+\subtitle{Perspectivas para a análise de desempenho}
+\date{IV Simpósio de Tecnologia Aplicada à Análise de Desempenho Esportivo \\ 27 e 28 de Fevereiro de 2026}
+\author{Prof. Dr. Paulo Santiago}
+\institute{Escola de Educação Física e Esporte de Ribeirão Preto (EEFERP) - USP \\ Laboratório de Biomecânica e Controle Motor (LaBioCoM)}
 
 \begin{document}
 
-% Slide de título
 \begin{frame}
     \titlepage
 \end{frame}
 
-% Slide: Introdução ao Processamento de Imagens
-\begin{frame}{Introdução ao Processamento de Imagens}
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
+
+% ==========================================
+% BLOCO 1: O Contexto e a Dor do Esporte
+% ==========================================
+\section{O Contexto e a Dor do Esporte}
+
+\begin{frame}{De onde viemos: LaBioCoM e a Pesquisa Aplicada}
     \begin{itemize}
-        \item O processamento de imagens e vídeos envolve técnicas para manipular e analisar imagens digitais.
-        \item Nesta aula, vamos explorar conceitos básicos usando exemplos em Python para:
-        \begin{itemize}
-            \item Extração de quadros de vídeos com FFmpeg.
-            \item Conversão de imagens para escala de cinza com OpenCV.
-            \item Manipulação de imagens com PIL.
-        \end{itemize}
+        \item O Laboratório de Biomecânica e Controle Motor (LaBioCoM).
+        \item Nossa missão: transpor o rigor do laboratório para a beira do campo.
+        \item A aproximação entre a academia e as demandas reais do alto rendimento.
     \end{itemize}
 \end{frame}
 
-% Slide: Extração de Quadros Usando FFmpeg e Subprocess
-\begin{frame}[fragile]{Extração de Quadros Usando FFmpeg e Subprocess}
+\begin{frame}{O Paradigma Tradicional vs. Validade Ecológica}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Padrão-Ouro (Laboratório)}
+            \begin{itemize}
+                \item Captura com marcadores (ex: Vicon).
+                \item Alta precisão, mas restrito ao ambiente controlado.
+                \item Invasivo e inviável em situação de jogo.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Demanda Ecológica (Campo)}
+            \begin{itemize}
+                \item Avaliação durante o treino ou competição.
+                \item Necessidade de respostas rápidas para a comissão técnica.
+                \item \textit{A "dor" do clube}: ter horas de vídeo, mas poucos dados acionáveis.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+% ==========================================
+% BLOCO 2: O Arsenal Tecnológico
+% ==========================================
+\section{O Arsenal Tecnológico: Visão Computacional e Deep Learning}
+
+\begin{frame}{A Revolução da Captura sem Marcadores}
     \begin{itemize}
-        \item O FFmpeg é uma ferramenta de linha de comando para manipulação de vídeos, que pode ser chamada do Python com \texttt{subprocess}.
-        \item Permite extrair quadros de vídeos para processamento posterior.
+        \item Como as Redes Neurais Profundas viabilizaram a \textit{Markerless Motion Capture}.
+        \item Democratização da extração de variáveis cinemáticas a partir de câmeras RGB comuns.
+        \item Superando os ruídos e calibrando a predição para movimentos esportivos complexos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Detecção e Rastreamento com YOLO}
+    \begin{itemize}
+        \item \textbf{YOLO (You Only Look Once):} Eficiência para identificar e rastrear múltiplos atletas em tempo real.
+        \item O desafio da oclusão constante em desportos coletivos.
+        \item Associações temporais e espaciais para manter a identidade do atleta ao longo do vídeo.
+    \end{itemize}
+    % Sugestão: Inserir um GIF/Vídeo curto do YOLO plotando as bounding boxes nos atletas
+    \begin{center}
+        \textit{[Inserir Vídeo/GIF do YOLO rastreando atletas aqui]}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Estimativa de Pose com MediaPipe}
+    \begin{itemize}
+        \item Modelagem do esqueleto 2D e 3D diretamente da imagem.
+        \item Cálculo de ângulos articulares, velocidades e assimetrias na marcha/corrida.
+        \item Da imagem bruta para o modelo biomecânico: validando os pontos anatômicos.
+    \end{itemize}
+    % Sugestão: Inserir um GIF do MediaPipe
+    \begin{center}
+        \textit{[Inserir Vídeo/GIF do MediaPipe extraindo o esqueleto de um atleta]}
+    \end{center}
+\end{frame}
+
+
+% ==========================================
+% BLOCO 3: Mão na Massa e Ferramentas Abertas
+% ==========================================
+\section{Mão na Massa: Projetos e Ferramentas Abertas}
+
+\begin{frame}{O Desafio do Rastreamento no Futebol: Projeto UPro\_Soccer}
+    \begin{itemize}
+        \item Rastreando não apenas os atletas, mas o objeto de maior interesse: \textbf{a bola}.
+        \item Desafios técnicos: bola pequena, alta velocidade, desfoque de movimento (\textit{motion blur}) e oclusão.
+        \item Geração de trajetórias técnico-táticas combinadas para análise do jogo.
+    \end{itemize}
+    \begin{center}
+        \textit{[Inserir Vídeo do tracking de bola do UPro\_Soccer]}
+    \end{center}
+\end{frame}
+
+\begin{frame}{A Força do Código Aberto na Ciência do Esporte}
+    \begin{itemize}
+        \item A reprodutibilidade da pesquisa exige o compartilhamento das ferramentas.
+        \item Fomentando uma comunidade colaborativa para acelerar a inovação.
+        \item Como a cultura \textit{open-source} beneficia clubes com menores orçamentos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{O \textit{vailá} Multimodal Toolbox}
+    \begin{itemize}
+        \item Desenvolvido para resolver o "pesadelo" da integração de dados cinemáticos e dinâmicos de diferentes fontes.
+        \item Uma solução prática, em Python, para organizar pipelines de pesquisa biomecânica.
     \end{itemize}
     
-\begin{lstlisting}
-import subprocess
+\begin{lstlisting}[language=Python, caption={Exemplo simplificado de uso do vailá}]
+import vaila as vl
 
-video_path = 'video.mp4'
-output_pattern = 'frame_%04d.png'
+# Carregando dados multimodais (Ex: cinemetria + plataforma de força)
+dataset = vl.load_multimodal_data("coleta_atleta_01.csv")
 
-# Comando FFmpeg para extrair quadros do video
-command = [
-    'ffmpeg', '-i', video_path,
-    '-vf', 'format=rgb24',
-    output_pattern
-]
+# Sincronizando os sinais e aplicando filtro passa-baixa
+dataset_sync = vl.synchronize_signals(dataset)
+dataset_filtered = vl.apply_butterworth(dataset_sync, cutoff=10, fs=200)
 
-# Executa o comando usando subprocess
-subprocess.run(command, check=True)
+# Calculando variáveis biomecânicas de interesse
+metricas = vl.calculate_joint_angles(dataset_filtered)
 \end{lstlisting}
+\end{frame}
 
+
+% ==========================================
+% BLOCO 4: Perspectivas e Futuro
+% ==========================================
+\section{A Fronteira do Conhecimento e Perspectivas}
+
+\begin{frame}{Fusão Multimodal e Dispositivos IoT}
     \begin{itemize}
-        \item O comando salva os quadros como \texttt{frame\_0001.png}, \texttt{frame\_0002.png}, etc.
+        \item A Visão Computacional não trabalha sozinha.
+        \item Sincronização de dados de vídeo com Wearables, sensores inerciais e dispositivos instrumentados (ex: blocos de partida IoT).
+        \item O panorama completo do esforço e desempenho do atleta no cenário real.
     \end{itemize}
 \end{frame}
 
-% Slide: Conversão para Escala de Cinza com OpenCV
-\begin{frame}[fragile]{Conversão para Escala de Cinza com OpenCV}
+\begin{frame}{Identificação de Talentos e Simulações Computacionais}
     \begin{itemize}
-        \item Use o OpenCV para converter as imagens RGB extraídas para escala de cinza.
-    \end{itemize}
-    
-\begin{lstlisting}
-import cv2
-import glob
-
-image_files = glob.glob('frame_*.png')
-
-for image_file in image_files:
-    img = cv2.imread(image_file)
-    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    gray_filename = 'gray_' + image_file
-    cv2.imwrite(gray_filename, gray_img)
-\end{lstlisting}
-
-    \begin{itemize}
-        \item O código lê cada imagem RGB e converte para escala de cinza.
+        \item Aplicação de \textit{machine learning} na identificação segura de talentos esportivos.
+        \item O conceito de \textit{safe deselection}: cruzando evidências empíricas e simulações para evitar perdas de atletas com potencial de maturação tardia.
+        \item A tecnologia reduzindo vieses humanos no processo de seleção.
     \end{itemize}
 \end{frame}
 
-% Slide: Manipulação de Imagens com PIL
-\begin{frame}[fragile]{Manipulação de Imagens com PIL}
-    \begin{itemize}
-        \item O PIL (Python Imaging Library) permite abrir, manipular e salvar imagens.
-    \end{itemize}
-    
-\begin{lstlisting}
-from PIL import Image
-import glob
-
-image_files = glob.glob('frame_*.png')
-
-for image_file in image_files:
-    img = Image.open(image_file)
-    gray_img = img.convert('L') # 'L' para escala de cinza
-    gray_filename = 'gray_' + image_file
-    gray_img.save(gray_filename)
-\end{lstlisting}
-
-    \begin{itemize}
-        \item Este exemplo converte as imagens para escala de cinza e as salva com um prefixo \texttt{gray\_}.
-    \end{itemize}
-\end{frame}
-
-% Slide: Submissão da Tarefa Usando Git
-\begin{frame}[fragile]{Submissão da Tarefa Usando Git}
-    \begin{itemize}
-        \item Para enviar a tarefa, siga os passos abaixo:
-        \begin{enumerate}
-            \item Crie uma nova branch: \texttt{git checkout -b sua-branch}
-            \item Adicione os arquivos: \texttt{git add .}
-            \item Faça o commit: \texttt{git commit -m "Tarefa de proc. de imagens"}
-            \item Envie para o remoto: \texttt{git push origin sua-branch}
-            \item Crie um Pull Request (PR) no GitHub para a branch principal.
-        \end{enumerate}
-        \item Certifique-se de que o código esteja bem comentado e organizado.
-    \end{itemize}
-\end{frame}
-
-% Slide: Conclusão e Próximos Passos
 \begin{frame}[standout]
-    Conclusão e Próximos Passos
+    Take-home Message \\
+    \vspace{0.5em}
+    \Large A inteligência artificial e a visão computacional não substituem o treinador; elas fornecem a lente de precisão para a sua intuição e experiência.
 \end{frame}
 
-\begin{frame}{Próximos Passos}
-    \begin{itemize}
-        \item Aprendemos a usar o FFmpeg com \texttt{subprocess}, além de técnicas de manipulação de imagens com OpenCV e PIL.
-        \item Nos próximos encontros, exploraremos técnicas avançadas de análise de vídeos e tracking de objetos.
-    \end{itemize}
+\begin{frame}[standout]
+    Obrigado! \\
+    \vspace{1em}
+    \normalsize \textbf{Prof. Dr. Paulo Santiago} \\
+    \normalsize EEFERP-USP / LaBioCoM \\
 \end{frame}
 
 \end{document}

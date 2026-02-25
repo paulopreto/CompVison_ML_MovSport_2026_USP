@@ -1,79 +1,70 @@
-\documentclass[aspectratio=169]{beamer}
+\ProvidesPackage{preto}[2026/02/25 Pacote de Estilo Customizado do Prof. Preto]
 
-% Pacotes de idioma
-\usepackage[utf8]{inputenc}
-\usepackage[portuguese]{babel}
+% ==========================================
+% 1. PACOTES NECESSÁRIOS
+% ==========================================
+\RequirePackage{tikz}
+\RequirePackage{pgf}
+\RequirePackage{bm}
+\RequirePackage{amsmath, amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{color}
+\RequirePackage{soul}
+\RequirePackage{tcolorbox}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{listings}
+\RequirePackage{ragged2e}
+\RequirePackage{hyperref}
 
-% --- CHAMA O PACOTE DE ESTILO CUSTOMIZADO ---
-\usepackage{preto}
+% ==========================================
+% 2. TEMA VISUAL
+% ==========================================
+\usetheme{Warsaw}
 
-% Caminho para as imagens (garanta que as logos do LaBioCoM e do GitHub estejam aqui)
-\graphicspath{{./images/}}
+% ==========================================
+% 3. CONFIGURAÇÃO DE CÓDIGO PYTHON
+% ==========================================
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green},
+  stringstyle=\color{red},
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true, % Quebra de linha automática
+  breakatwhitespace=true, % Quebra de linha em espaços
+  showstringspaces=false
+}
 
-% Informações da Capa
-\title{Visão Computacional e Deep Learning na Análise do Movimento de Atletas}
-\subtitle{Perspectivas para a análise de desempenho}
-\date{IV Simpósio de Tecnologia Aplicada à Análise de Desempenho Esportivo \\ 27 e 28 de Fevereiro de 2026}
-\author{Prof. Dr. Paulo Santiago}
-\institute{Escola de Educação Física e Esporte de Ribeirão Preto (EEFERP) - USP \\ Laboratório de Biomecânica e Controle Motor (LaBioCoM)}
+% ==========================================
+% 4. VARIÁVEIS DO RODAPÉ
+% ==========================================
+\providecommand{\shortauthorname}{Santiago, PRP}
+\providecommand{\shorttitletext}{Visão Computacional no Esporte}
 
-\begin{document}
-
-\maketitle
-
-\begin{frame}{Agenda}
-    \tableofcontents
-\end{frame}
-
-\section{Introdução}
-\begin{frame}{O Papel da Visão Computacional no Esporte}
-    \begin{itemize}
-        \item Evolução tecnológica na análise de desempenho esportivo.
-        \item A transição para avaliações não invasivas em ambientes ecológicos (treinos e jogos).
-        \item Captura de movimento sem marcadores (\textit{Markerless Motion Capture}) e as fronteiras do alto rendimento.
-    \end{itemize}
-\end{frame}
-
-\section{Modelos de Deep Learning e Rastreamento}
-\begin{frame}{Aplicações com YOLO e MediaPipe}
-    \begin{itemize}
-        \item \textbf{YOLO:} Arquiteturas eficientes para detecção e rastreamento de múltiplos atletas em tempo real.
-        \item \textbf{MediaPipe:} Estimativa de pose e rastreamento de pontos articulares estruturando a análise biomecânica bidimensional e tridimensional.
-        \item Extração de métricas cinemáticas para suporte à decisão da comissão técnica.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Rastreamento de Bola e Atletas em Campo}
-    \begin{itemize}
-        \item Superando os desafios de oclusão e rastreamento de pequenos objetos em alta velocidade.
-        \item Aplicação prática: O desenvolvimento e features do projeto UPro\_Soccer.
-        \item Integração de dados de trajetória para análises técnico-táticas avançadas.
-    \end{itemize}
-\end{frame}
-
-\section{Ferramentas de Código Aberto}
-\begin{frame}{A biblioteca \textit{vailá}}
-    \begin{itemize}
-        \item A importância do desenvolvimento \textit{open-source} na pesquisa científica esportiva.
-        \item O \textit{vailá} Multimodal Toolbox: facilitando o pipeline de integração de dados cinemáticos e dinâmicos.
-        \item Processamento de dados prático, reprodutível e voltado para a comunidade.
-    \end{itemize}
-\end{frame}
-
-\section{Perspectivas Futuras}
-\begin{frame}{Próximos Passos na Análise de Desempenho}
-    \begin{itemize}
-        \item Integração de simulações e evidências empíricas para a identificação segura de talentos.
-        \item Fusão de dados multimodais (visão computacional + dispositivos IoT vestíveis).
-        \item Democratização do acesso à tecnologia de ponta para a prática baseada em evidências.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[standout]
-    Obrigado! \\
-    \vspace{1em}
-    \normalsize \textbf{Prof. Dr. Paulo Santiago} \\
-    \normalsize EEFERP-USP / LaBioCoM \\
-\end{frame}
-
-\end{document}
+% ==========================================
+% 5. RODAPÉ COM 3 DIVISÕES + LOGO NO PRIMEIRO PLANO
+% ==========================================
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\shortauthorname
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\shorttitletext
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}
+      \href{https://github.com/paulopreto}{\includegraphics[height=1.5ex]{GitHub-Logo.png} MACMH}\hspace*{1em}
+      \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}
+  }
+  \vskip0pt%
+  % --- DESENHA A LOGO POR ÚLTIMO (GARANTE O PRIMEIRO PLANO) ---
+  \begin{tikzpicture}[overlay, remember picture]
+    \node[anchor=north east, xshift=-0.0cm, yshift=-0.0cm] at (current page.north east) {\includegraphics[height=1.7cm]{logo_labiocom.png}};
+  \end{tikzpicture}
+}

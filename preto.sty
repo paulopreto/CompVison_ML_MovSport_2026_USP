@@ -1,0 +1,79 @@
+\documentclass[aspectratio=169]{beamer}
+
+% Pacotes de idioma
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+
+% --- CHAMA O PACOTE DE ESTILO CUSTOMIZADO ---
+\usepackage{preto}
+
+% Caminho para as imagens (garanta que as logos do LaBioCoM e do GitHub estejam aqui)
+\graphicspath{{./images/}}
+
+% Informações da Capa
+\title{Visão Computacional e Deep Learning na Análise do Movimento de Atletas}
+\subtitle{Perspectivas para a análise de desempenho}
+\date{IV Simpósio de Tecnologia Aplicada à Análise de Desempenho Esportivo \\ 27 e 28 de Fevereiro de 2026}
+\author{Prof. Dr. Paulo Santiago}
+\institute{Escola de Educação Física e Esporte de Ribeirão Preto (EEFERP) - USP \\ Laboratório de Biomecânica e Controle Motor (LaBioCoM)}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
+
+\section{Introdução}
+\begin{frame}{O Papel da Visão Computacional no Esporte}
+    \begin{itemize}
+        \item Evolução tecnológica na análise de desempenho esportivo.
+        \item A transição para avaliações não invasivas em ambientes ecológicos (treinos e jogos).
+        \item Captura de movimento sem marcadores (\textit{Markerless Motion Capture}) e as fronteiras do alto rendimento.
+    \end{itemize}
+\end{frame}
+
+\section{Modelos de Deep Learning e Rastreamento}
+\begin{frame}{Aplicações com YOLO e MediaPipe}
+    \begin{itemize}
+        \item \textbf{YOLO:} Arquiteturas eficientes para detecção e rastreamento de múltiplos atletas em tempo real.
+        \item \textbf{MediaPipe:} Estimativa de pose e rastreamento de pontos articulares estruturando a análise biomecânica bidimensional e tridimensional.
+        \item Extração de métricas cinemáticas para suporte à decisão da comissão técnica.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Rastreamento de Bola e Atletas em Campo}
+    \begin{itemize}
+        \item Superando os desafios de oclusão e rastreamento de pequenos objetos em alta velocidade.
+        \item Aplicação prática: O desenvolvimento e features do projeto UPro\_Soccer.
+        \item Integração de dados de trajetória para análises técnico-táticas avançadas.
+    \end{itemize}
+\end{frame}
+
+\section{Ferramentas de Código Aberto}
+\begin{frame}{A biblioteca \textit{vailá}}
+    \begin{itemize}
+        \item A importância do desenvolvimento \textit{open-source} na pesquisa científica esportiva.
+        \item O \textit{vailá} Multimodal Toolbox: facilitando o pipeline de integração de dados cinemáticos e dinâmicos.
+        \item Processamento de dados prático, reprodutível e voltado para a comunidade.
+    \end{itemize}
+\end{frame}
+
+\section{Perspectivas Futuras}
+\begin{frame}{Próximos Passos na Análise de Desempenho}
+    \begin{itemize}
+        \item Integração de simulações e evidências empíricas para a identificação segura de talentos.
+        \item Fusão de dados multimodais (visão computacional + dispositivos IoT vestíveis).
+        \item Democratização do acesso à tecnologia de ponta para a prática baseada em evidências.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[standout]
+    Obrigado! \\
+    \vspace{1em}
+    \normalsize \textbf{Prof. Dr. Paulo Santiago} \\
+    \normalsize EEFERP-USP / LaBioCoM \\
+\end{frame}
+
+\end{document}

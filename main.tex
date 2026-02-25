@@ -1,0 +1,142 @@
+\documentclass[aspectratio=169]{beamer}
+
+% Pacotes básicos e idioma
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+
+% --- CHAMA O PACOTE CUSTOMIZADO ---
+\usepackage{preto}
+
+% Caminho para as imagens (garanta que logo_labiocom.png e GitHub-Logo.png estejam aqui)
+\graphicspath{{./images/}}
+
+% Título e autor
+\title{Introdução ao Processamento de Imagens e Vídeos}
+\author{\href{http://www.eeferp.usp.br/pessoas/docentes/paulo-roberto-pereira-santiago}{Prof. Paulo Roberto Pereira Santiago, Ph.D.}}
+\date{\today}
+
+\begin{document}
+
+% Slide de título
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Slide: Introdução ao Processamento de Imagens
+\begin{frame}{Introdução ao Processamento de Imagens}
+    \begin{itemize}
+        \item O processamento de imagens e vídeos envolve técnicas para manipular e analisar imagens digitais.
+        \item Nesta aula, vamos explorar conceitos básicos usando exemplos em Python para:
+        \begin{itemize}
+            \item Extração de quadros de vídeos com FFmpeg.
+            \item Conversão de imagens para escala de cinza com OpenCV.
+            \item Manipulação de imagens com PIL.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+% Slide: Extração de Quadros Usando FFmpeg e Subprocess
+\begin{frame}[fragile]{Extração de Quadros Usando FFmpeg e Subprocess}
+    \begin{itemize}
+        \item O FFmpeg é uma ferramenta de linha de comando para manipulação de vídeos, que pode ser chamada do Python com \texttt{subprocess}.
+        \item Permite extrair quadros de vídeos para processamento posterior.
+    \end{itemize}
+    
+\begin{lstlisting}
+import subprocess
+
+video_path = 'video.mp4'
+output_pattern = 'frame_%04d.png'
+
+# Comando FFmpeg para extrair quadros do video
+command = [
+    'ffmpeg', '-i', video_path,
+    '-vf', 'format=rgb24',
+    output_pattern
+]
+
+# Executa o comando usando subprocess
+subprocess.run(command, check=True)
+\end{lstlisting}
+
+    \begin{itemize}
+        \item O comando salva os quadros como \texttt{frame\_0001.png}, \texttt{frame\_0002.png}, etc.
+    \end{itemize}
+\end{frame}
+
+% Slide: Conversão para Escala de Cinza com OpenCV
+\begin{frame}[fragile]{Conversão para Escala de Cinza com OpenCV}
+    \begin{itemize}
+        \item Use o OpenCV para converter as imagens RGB extraídas para escala de cinza.
+    \end{itemize}
+    
+\begin{lstlisting}
+import cv2
+import glob
+
+image_files = glob.glob('frame_*.png')
+
+for image_file in image_files:
+    img = cv2.imread(image_file)
+    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray_filename = 'gray_' + image_file
+    cv2.imwrite(gray_filename, gray_img)
+\end{lstlisting}
+
+    \begin{itemize}
+        \item O código lê cada imagem RGB e converte para escala de cinza.
+    \end{itemize}
+\end{frame}
+
+% Slide: Manipulação de Imagens com PIL
+\begin{frame}[fragile]{Manipulação de Imagens com PIL}
+    \begin{itemize}
+        \item O PIL (Python Imaging Library) permite abrir, manipular e salvar imagens.
+    \end{itemize}
+    
+\begin{lstlisting}
+from PIL import Image
+import glob
+
+image_files = glob.glob('frame_*.png')
+
+for image_file in image_files:
+    img = Image.open(image_file)
+    gray_img = img.convert('L') # 'L' para escala de cinza
+    gray_filename = 'gray_' + image_file
+    gray_img.save(gray_filename)
+\end{lstlisting}
+
+    \begin{itemize}
+        \item Este exemplo converte as imagens para escala de cinza e as salva com um prefixo \texttt{gray\_}.
+    \end{itemize}
+\end{frame}
+
+% Slide: Submissão da Tarefa Usando Git
+\begin{frame}[fragile]{Submissão da Tarefa Usando Git}
+    \begin{itemize}
+        \item Para enviar a tarefa, siga os passos abaixo:
+        \begin{enumerate}
+            \item Crie uma nova branch: \texttt{git checkout -b sua-branch}
+            \item Adicione os arquivos: \texttt{git add .}
+            \item Faça o commit: \texttt{git commit -m "Tarefa de proc. de imagens"}
+            \item Envie para o remoto: \texttt{git push origin sua-branch}
+            \item Crie um Pull Request (PR) no GitHub para a branch principal.
+        \end{enumerate}
+        \item Certifique-se de que o código esteja bem comentado e organizado.
+    \end{itemize}
+\end{frame}
+
+% Slide: Conclusão e Próximos Passos
+\begin{frame}[standout]
+    Conclusão e Próximos Passos
+\end{frame}
+
+\begin{frame}{Próximos Passos}
+    \begin{itemize}
+        \item Aprendemos a usar o FFmpeg com \texttt{subprocess}, além de técnicas de manipulação de imagens com OpenCV e PIL.
+        \item Nos próximos encontros, exploraremos técnicas avançadas de análise de vídeos e tracking de objetos.
+    \end{itemize}
+\end{frame}
+
+\end{document}

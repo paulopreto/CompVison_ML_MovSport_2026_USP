@@ -43,47 +43,49 @@
 
 % --- Slide Novo 1: A Analogia do Motor ---
 \begin{frame}{A Ilusão do Domínio: Somos Apertadores de Botões?}
-    \begin{itemize}
-        \item Temos a facilidade de comprar o \textit{software} mais caro e o \textit{hardware} mais moderno.
-        \item \textbf{O Problema:} Sabemos onde clicar, mas não sabemos o que acontece no "silício".
-        \item \textit{Analogia da Memória:} Tratamos a tecnologia como uma caixa preta de bits consumíveis, não como geração de conhecimento.
-    \end{itemize}
+    \begin{columns}[T] % Alinhamento pelo topo para maximizar o espaço vertical
+        
+        % Coluna da Esquerda: Texto
+        \begin{column}{0.65\textwidth}
+            \begin{itemize}
+                \item Temos a facilidade de comprar o \textit{software} mais caro e o \textit{hardware} mais moderno.
+                \item \textbf{O Problema:} Sabemos onde clicar, mas não sabemos o que acontece no ``silício''.
+                \item \textit{Analogia da Memória:} Tratamos a tecnologia como uma caixa preta de \textit{bits} consumíveis, não como geração de conhecimento.
+            \end{itemize}
+        \end{column}
+        
+        % Coluna da Direita: Imagem reduzida
+        \begin{column}{0.30\textwidth}
+            \begin{center}
+                \includegraphics[height=3.2cm, keepaspectratio]{pauloef_perdido.png}
+            \end{center}
+        \end{column}
+        
+    \end{columns}
+
+    \vfill % Empurra a caixa para a extremidade inferior
+
     \begin{center}
-        \begin{tcolorbox}[colback=red!5,colframe=red!75!black,title=Provocação Metodológica]
-            \centering \large \textbf{Como vamos discutir a complexidade da análise de desempenho se não sabemos como funciona o motor do algoritmo?}
+        \begin{tcolorbox}[
+            colback=red!5,
+            colframe=red!75!black,
+            title=Provocação Metodológica,
+            width=0.98\textwidth,
+            top=2pt, bottom=2pt, % Compacta o espaço interno vertical
+            middle=2pt
+        ]
+            \centering 
+            \small \textbf{Como vamos discutir a complexidade da análise de desempenho se não sabemos como funciona o motor do algoritmo?}
         \end{tcolorbox}
     \end{center}
 \end{frame}
 
-% --- Slide Novo 2: Exemplos de Protagonismo Externo ---
-\begin{frame}{Enquanto isso, a vanguarda acontece lá fora...}
+\begin{frame}{A Nossa Resposta: Desenvolvimento e Validação Nacional}
     \begin{itemize}
-        \item \textbf{CVPR 2026 / Roboflow:} Desafios globais de visão computacional definindo os próximos padrões da indústria.
-        \item \textbf{KAUST (Arábia Saudita):} Tornando-se o primeiro instituto de pesquisa da FIFA no Oriente Médio e Ásia.
-        \item \textbf{\textit{Markerless Motion Capture}:} O estado da arte (\textit{state-of-the-art}) sendo ditado por laboratórios e empresas internacionais, como a Theia3D.
-    \end{itemize}
-    \vspace{0.1cm}
-    \begin{center}
-        \textbf{Por que não somos nós?} \\
-        \vspace{0.1cm}
-        \scriptsize 
-        \url{https://blog.roboflow.com/roboflow20-vl-challenge-at-cvpr-2026/} \\
-        \url{https://www.kaust.edu.sa/en/news/kaust-becomes-first-fifa-research-institute-in-the-middle-east-and-asia} \\
-        \url{https://www.theiamarkerless.com/industries/sports-motion-capture} \\
-        \url{https://www.linkedin.com/posts/theia-markerless_watch-markerless-motion-capture-for-applied-activity-7430277492789133312-dNnD}
-    \end{center}
-    \vspace{0.1cm}
-    \begin{itemize}
-        \item Precisamos decidir: coisas prontas ou desenvolver nossa própria inteligência?
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{De onde viemos: LaBioCoM e a Missão de Inovar}
-    \begin{itemize}
-        \item O Laboratório de Biomecânica e Controle Motor (LaBioCoM) na EEFERP-USP.
-        \item Rompendo o ciclo de dependência: a universidade como polo de criação de tecnologia aplicada.
-        \item Nossa missão: transpor o rigor metodológico do laboratório para a beira do campo.
-        \item A sinergia fundamental: Academia + Clubes Esportivos + Empresas de Base Tecnológica.
+        \item Rompendo a dependência de "caixas pretas" por meio da construção e validação de algoritmos de código aberto (\textit{open-source}).
+        \item \textbf{Futebol de Campo:} Validação de métodos \textit{markerless} baseados em \textit{machine learning} contra a digitalização 3D tradicional para a análise cinemática do chute \cite{vieira2022automatic}.
+        \item \textbf{Desportos de Combate:} Avaliação da precisão de arquiteturas como o \textit{OpenPose} para rastreamento de atletas em áreas oficiais de Taekwondo \cite{banks2024accuracy}.
+        \item \textbf{Movimentos Complexos:} Desenvolvimento de \textit{pipelines} próprios (baseados em \textit{MediaPipe}) para quantificação da cinemática 2D em exercícios como o agachamento \cite{pereira2025markerless}.
     \end{itemize}
 \end{frame}
 
@@ -177,27 +179,44 @@
 
 
 % ==========================================
-% BLOCO 3: Mão na Massa e Ferramentas Abertas
+% BLOCO 3: Mão na Massa, Projetos Nacionais e Ferramentas Abertas
 % ==========================================
-\section{Mão na Massa: Projetos e Ferramentas Abertas}
+\section{Mão na Massa: Validações Científicas do LaBioCoM}
 
-\begin{frame}{O Desafio do Rastreamento no Futebol: Projeto UPro\_Soccer}
+\begin{frame}{Rastreamento \textit{Markerless} em Cenários Reais}
     \begin{itemize}
-        \item Rastreando não apenas os atletas, mas o objeto de maior interesse: \textbf{a bola}.
-        \item Desafios técnicos: bola pequena, alta velocidade, desfoque de movimento (\textit{motion blur}) e oclusão.
-        \item Geração de trajetórias técnico-táticas combinadas para análise do jogo.
+        \item \textbf{Desportos de Combate:} Validação do \textit{OpenPose} para estimar a posição e movimentação de atletas de Taekwondo em área oficial de combate \cite{banks2024accuracy}.
+        \item \textbf{Futebol de Campo:} Método automático e não invasivo de \textit{machine learning} (baseado em \textit{OpenPose}) validado contra a digitalização manual 3D para a análise cinemática do chute \cite{vieira2022automatic}.
+        \item A transição bem-sucedida dos laboratórios fechados para o ambiente natural (\textit{in the wild}).
     \end{itemize}
-    \begin{center}
-        \textit{[Inserir Vídeo do tracking de bola do UPro\_Soccer]}
-    \end{center}
 \end{frame}
 
-\begin{frame}{A Força do Código Aberto na Ciência do Esporte}
+\begin{frame}{Validação Clínica e Acesso Aberto}
     \begin{itemize}
-        \item A reprodutibilidade da pesquisa exige o compartilhamento das ferramentas.
-        \item Fomentando uma comunidade colaborativa para acelerar a inovação.
-        \item Como a cultura \textit{open-source} beneficia clubes com menores orçamentos.
+        \item \textbf{Cinemática 2D:} Desenvolvimento e validação de um \textit{pipeline} baseado em pixels, rodando o \textit{MediaPipe}, para quantificar movimentos de membros inferiores no agachamento \cite{pereira2025markerless}.
+        \item Uma alternativa consistente e de baixo custo para auxiliar a tomada de decisão clínica e desportiva onde a captura de movimento tradicional não está disponível.
+        \item A força da ciência aberta (\textit{open-source}) para reduzir a desigualdade tecnológica e fomentar o desenvolvimento nacional.
     \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{O \textit{vailá} Multimodal Toolbox \cite{santiago2024vaila}}
+    \begin{itemize}
+        \item Um ecossistema em \textit{Python} desenvolvido para solucionar a complexidade da integração de dados biomecânicos.
+        \item O \textit{vailá} liberta o pesquisador e o analista de desempenho das "caixas pretas" do mercado.
+    \end{itemize}
+    
+\begin{lstlisting}[caption={Exemplo de uso nativo da nossa biblioteca}]
+import vaila as vl
+
+# Carregando dados multimodais
+dataset = vl.load_multimodal_data("coleta_atleta_01.csv")
+
+# Sincronizando os sinais cinematicos e cineticos
+dataset_sync = vl.synchronize_signals(dataset)
+
+# Aplicando modelos biomecanicos abertos
+metricas = vl.calculate_joint_angles(dataset_sync)
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{O \textit{vailá} Multimodal Toolbox}

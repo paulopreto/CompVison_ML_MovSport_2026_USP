@@ -173,10 +173,11 @@
     
     \textbf{O que você encontrará no repositório (\texttt{src/}):}
     \begin{itemize}
-        \item \textbf{Demonstração didática:} \texttt{img7x7.py} (matriz no terminal e bits); \\\texttt{png2raw.py} (PNG $\rightarrow$ RAW).
-        \item \textbf{Geração de Dados:} Construção de matrizes e \textit{datasets} sintéticos (\texttt{makedataset.py}).
-        \item \textbf{O Treinamento:} Uma Rede Neural Convolucional (CNN) feita do zero para prever coordenadas espaciais (\texttt{trainblack7x7.py}).
-        \item \textbf{A Inferência:} Ferramentas de terminal (CLI) para testar o rastreamento em novas imagens (\texttt{predictblackdot.py}).
+        \item \textbf{Demonstração didática:} \texttt{img7x7.py} (matriz no terminal e bits); \\
+        \texttt{png2raw.py} (PNG $\rightarrow$ RAW).
+        \item \textbf{Geração de Dados:} \texttt{makedataset.py} (Construção de matrizes e \textit{datasets} sintéticos).
+        \item \textbf{O Treinamento:} \texttt{trainblack7x7.py} (Uma Rede Neural Convolucional (CNN) feita do zero para prever coordenadas espaciais).
+        \item \textbf{A Inferência:} \texttt{predictblackdot.py} (Ferramentas de terminal (CLI) para testar o rastreamento em novas imagens).
     \end{itemize}
     
     \vspace{0.4cm}
@@ -272,6 +273,86 @@
     \begin{center}
         \textit{[Inserir Vídeo/GIF do MediaPipe extraindo o esqueleto de um atleta]}
     \end{center}
+\end{frame}
+
+% ------------------------------------------
+% BLOCO: Deep Learning com PyTorch
+% ------------------------------------------
+\begin{frame}{Da Visão Computacional Clássica ao Deep Learning}
+    \begin{itemize}
+        \item Saímos da engenharia manual de \textit{features} (bordas, filtros, regras) para aprender diretamente a partir dos pixels.
+        \item Redes neurais aprendem representações hierárquicas, tornando os modelos mais robustos a ruídos e variações do cenário real.
+        \item O mesmo motor matemático serve da classificação simples à análise biomecânica avançada de movimentos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Como uma CNN Enxerga}
+    \begin{center}
+        \includegraphics[height=4.8cm, keepaspectratio]{cnn.png}
+    \end{center}
+    
+    \vspace{0.2cm}
+    
+    \begin{itemize}
+        \item Convoluções + ReLU: extraem padrões locais (bordas, texturas, formas).
+        \item \textit{Pooling}: reduz a dimensão e concentra a informação relevante.
+        \item Camadas totalmente conectadas: transformam \textit{features} em decisão (classes, coordenadas, probabilidades).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{PyTorch para Visão Computacional}
+    \begin{itemize}
+        \item Framework dominante em Visão Computacional e \textit{Machine Learning} pela flexibilidade do grafo dinâmico e facilidade de experimentação.
+        \item Ecossistema robusto com \texttt{torchvision}: \textit{datasets}, modelos pré-treinados e \textit{transforms} prontos para uso.
+        \item Forte integração com pesquisa e produção: do experimento no laboratório ao deploy em servidores e dispositivos embarcados.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Ecossistema de Visão no PyTorch}
+    \begin{itemize}
+        \item \textbf{Datasets}: acesso direto a ImageNet, CIFAR-10, MNIST, COCO e outros.
+        \item \textbf{Modelos pré-treinados}: ResNet, EfficientNetV2, ConvNeXt, ViT, Swin, Mask R-CNN, entre outros.
+        \item \textbf{Transforms}: pré-processamento e \textit{data augmentation} (resize, crop, rotação, normalização).
+        \item \textbf{Ferramentas}: PyTorch Hub, tutoriais oficiais e exemplos de \textit{transfer learning}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Workflow em PyTorch para Visão}
+    \begin{enumerate}
+        \item \textbf{Preparação de dados}: \texttt{Dataset} + \texttt{DataLoader} (imagens $\rightarrow$ tensores).
+        \item \textbf{Definição do modelo}: CNNs ou Transformers com \texttt{torch.nn}.
+        \item \textbf{Treinamento}: \texttt{autograd} + otimizadores (SGD/Adam) + loop de épocas.
+        \item \textbf{Avaliação e inferência}: métricas em dados novos, salvamento e exportação (TorchScript/ONNX).
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Aplicações em Visão com Deep Learning}
+    \begin{itemize}
+        \item Classificação de imagens (ex.: tipo de gesto, tipo de jogada, padrões de movimento).
+        \item Detecção de objetos (jogadores, bola, linhas, alvos, equipamentos).
+        \item Segmentação de cenas (separar atleta/fundo, zonas do campo, regiões corporais).
+        \item Modelos multimodais (visão + linguagem, modelos de difusão para simulação e geração de cenários).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Escolhendo o Modelo de Classificação}
+    \begin{itemize}
+        \item \textbf{CNNs modernas} (EfficientNetV2, ConvNeXt): equilíbrio entre acurácia e custo computacional, ideais para \textit{transfer learning}.
+        \item \textbf{Transformers visuais} (ViT, Swin): brilham com pré-treinamento massivo, quando há muito dado e a prioridade é desempenho de ponta.
+        \item \textbf{Modelos para borda/mobile} (MobileNetV3) vs. modelos mais pesados (ConvNeXt/ViT): \textit{trade-off} entre latência, memória e precisão.
+    \end{itemize}
+    
+    \vspace{0.2cm}
+    
+    {\scriptsize Sempre considerar latência, consumo de memória e robustez, não apenas a acurácia top-1.}
+\end{frame}
+
+\begin{frame}{Começando na Prática}
+    \begin{itemize}
+        \item Tutorial oficial de \textit{Transfer Learning} em visão com PyTorch como ponto de partida.
+        \item Uso de modelos pré-treinados de \texttt{torchvision.models} com poucas linhas de código.
+        \item Adaptação das últimas camadas para o seu \textit{dataset} esportivo (fine-tuning parcial ou total).
+    \end{itemize}
 \end{frame}
 
 

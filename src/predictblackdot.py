@@ -1,3 +1,16 @@
+#!/usr/bin/env python3
+"""
+predictblackdot.py — Inferência da coordenada do ponto preto via CNN treinada.
+
+Carrega um modelo .pth (treinado com trainblack7x7.py), lê uma imagem PNG 7x7
+em escala de cinza, normaliza e passa pela rede; exibe e opcionalmente salva
+as coordenadas (x, y) preditas e em pixel inteiro.
+
+Uso:
+    python predictblackdot.py -i img_001.png -n modelo_rastreador.pth
+    python predictblackdot.py --help
+"""
+
 import argparse
 import torch
 import torch.nn as nn

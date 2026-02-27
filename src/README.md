@@ -8,7 +8,109 @@ Ao invés de usar "caixas pretas" prontas do mercado, aqui nós construímos o a
 
 ## Dependências
 
-Para rodar os *scripts* deste diretório, você precisará de um ambiente Python (recomendado o uso do `uv` ou `venv`) com as seguintes bibliotecas instaladas:
+Na **raiz do repositório** existem `pyproject.toml` e `requirements.txt`. Instale as dependências de uma das formas:
 
 ```bash
-pip install numpy pillow torch matplotlib
+# Opção 1: requirements.txt (a partir da raiz do projeto)
+pip install -r requirements.txt
+
+# Opção 2: com uv (a partir da raiz)
+uv pip install -r requirements.txt
+
+# Opção 3: ambiente virtual recomendado
+python -m venv .venv
+source .venv/bin/activate   # Linux/macOS
+# .venv\Scripts\activate   # Windows
+pip install -r requirements.txt
+```
+
+Pacotes necessários: `numpy`, `pillow`, `torch`, `matplotlib`.
+
+---
+
+## Scripts e como rodar
+
+Todos os scripts aceitam `-h` ou `--help` para exibir a ajuda na linha de comando.
+
+| Script | Descrição |
+|--------|-----------|
+| `img7x7.py` | Cria imagem 7x7 com pixel central preto; mostra matriz no terminal e opcionalmente gráfico. |
+| `makedataset.py` | Gera dataset sintético (N imagens 7x7 + CSV de labels). |
+| `trainblack7x7.py` | Treina a CNN para regredir (x, y) do ponto e salva o modelo `.pth`. |
+| `predictblackdot.py` | Carrega o modelo e uma imagem e prediz as coordenadas do ponto. |
+| `png2raw.py` | Converte uma imagem PNG para arquivo RAW (bytes brutos). |
+
+### 1. Demonstração didática (matriz e bits)
+
+```bash
+cd src
+python img7x7.py
+python img7x7.py --help
+python img7x7.py -o minha_imagem.png --no-show
+```
+
+### 2. Gerar dataset sintético
+
+```bash
+cd src
+python makedataset.py
+python makedataset.py -n 200 -s dataset_custom
+python makedataset.py --help
+```
+
+### 3. Treinar a CNN
+
+```bash
+cd src
+python trainblack7x7.py
+python trainblack7x7.py -e 20 -o modelo_custom.pth
+python trainblack7x7.py --help
+```
+
+### 4. Inferência (prever o ponto em uma imagem)
+
+É necessário ter um modelo treinado (por exemplo `modelo_rastreador.pth`) e uma imagem PNG 7x7 em escala de cinza:
+
+```bash
+cd src
+python predictblackdot.py -i dataset_pontos/img_000.png -n modelo_rastreador.pth
+python predictblackdot.py --help
+```
+
+### 5. Converter PNG para RAW
+
+```bash
+cd src
+python png2raw.py -i pixel_central_7x7.png
+python png2raw.py --help
+```
+
+---
+
+## Fluxo completo (do zero à inferência)
+
+```bash
+cd src
+pip install -r ../requirements.txt   # se ainda não instalou
+
+# 1) Ver a imagem como matriz (didático)
+python img7x7.py --no-show
+
+# 2) Gerar dataset (opcional; o treino usa dados sintéticos on-the-fly)
+python makedataset.py -n 100
+
+# 3) Treinar o modelo
+python trainblack7x7.py -e 15 -o modelo_rastreador.pth
+
+# 4) Prever em uma imagem (ex.: uma gerada pelo makedataset)
+python predictblackdot.py -i dataset_pontos/img_000.png -n modelo_rastreador.pth
+```
+
+---
+
+## Estrutura de arquivos gerados
+
+- `img7x7.py` → `pixel_central_7x7.png`, `pixel_central_7x7.raw`, `*_preview.png`
+- `makedataset.py` → pasta `dataset_pontos/` (ou a que você indicar) com `img_*.png` e `labels.csv`
+- `trainblack7x7.py` → `modelo_rastreador.pth` (ou o nome indicado em `-o`)
+- `predictblackdot.py` → atualiza/gera `resultados_rastreamento.csv`

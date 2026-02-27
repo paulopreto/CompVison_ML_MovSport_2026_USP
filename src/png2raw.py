@@ -1,3 +1,16 @@
+#!/usr/bin/env python3
+"""
+png2raw.py — Converte imagem PNG para formato RAW (bytes brutos).
+
+Lê uma imagem PNG, converte para escala de cinza (8 bits por pixel) e grava
+os bytes da matriz num arquivo .raw (útil para inspeção em hex ou integração
+com código que espera buffer bruto).
+
+Uso:
+    python png2raw.py -i imagem.png
+    python png2raw.py --help
+"""
+
 import argparse
 import numpy as np
 from PIL import Image

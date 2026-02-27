@@ -1,0 +1,7 @@
+# CompVison_ML_MovSport_2026_USP — dependências dos scripts em src/
+# Uso: pip install -r requirements.txt  (recomendado: em um venv ou uv)
+
+numpy>=1.20
+pillow>=9.0
+torch>=2.0
+matplotlib>=3.5

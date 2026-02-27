@@ -41,6 +41,25 @@
     \end{itemize}
 \end{frame}
 
+% --- Slide 1: A Crítica ao Consumo Passivo ---
+\begin{frame}{A Ilusão do Domínio: Somos Apertadores de Botões?}
+    \begin{columns}[T]
+        \begin{column}{0.65\textwidth}
+            \begin{itemize}
+                \item Temos a facilidade de comprar o \textit{software} mais caro e o \textit{hardware} mais moderno[cite: 88].
+                \item \textbf{O Problema:} Sabemos onde clicar, mas não sabemos o que acontece no ``silício''[cite: 89].
+                \item \textit{Analogia da Memória:} Tratamos a tecnologia como uma caixa preta de \textit{bits} consumíveis, não como geração de conhecimento[cite: 90].
+            \end{itemize}
+        \end{column}
+        
+        \begin{column}{0.35\textwidth}
+            \centering
+            \includegraphics[height=5cm, keepaspectratio]{pauloef_perdido.png}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% --- Slide 1: A Crítica ao Consumo Passivo ---
 \begin{frame}{A Ilusão do Domínio: Somos Apertadores de Botões?}
     \begin{columns}[T]
         \begin{column}{0.65\textwidth}
@@ -51,27 +70,86 @@
             \end{itemize}
         \end{column}
         
-        \begin{column}{0.35\textwidth}  % aumentei um pouco para usar melhor o espaço
+        \begin{column}{0.35\textwidth}
             \centering
-            \includegraphics[height=6.2cm, keepaspectratio]{pauloef_perdido.png}
+            \includegraphics[height=5.5cm, keepaspectratio]{pauloef_perdido.png}
         \end{column}
     \end{columns}
 \end{frame}
 
-    \vfill % Empurra a caixa para a extremidade inferior
+% --- Slide 1: A Crítica ao Consumo Passivo ---
+\begin{frame}{A Ilusão do Domínio: Somos Apertadores de Botões?}
+    \begin{columns}[T]
+        \begin{column}{0.65\textwidth}
+            \begin{itemize}
+                \item Temos a facilidade de comprar o \textit{software} mais caro e o \textit{hardware} mais moderno.
+                \item \textbf{O Problema:} Sabemos onde clicar, mas não sabemos o que acontece no ``silício''.
+                \item \textit{Analogia da Memória:} Tratamos a tecnologia como uma caixa preta de \textit{bits} consumíveis, não como geração de conhecimento.
+            \end{itemize}
+        \end{column}
+        
+        \begin{column}{0.35\textwidth}
+            \centering
+            \includegraphics[height=5.5cm, keepaspectratio]{pauloef_perdido.png}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% --- Slide 2: A Camada de Desenvolvimento (O Motor) ---
+\begin{frame}{A Ilusão do Domínio: O que há por trás do botão?}
+    \begin{center}
+        \includegraphics[height=6.5cm, keepaspectratio]{paper1.png}
+    \end{center}
+\end{frame}
+
+% --- Slide 3: O Nível do Detalhe (A Provocação) ---
+\begin{frame}{A Ilusão do Domínio: A Ciência do Pixel}
+    \begin{center}
+        \includegraphics[height=4.5cm, keepaspectratio]{onepixel.png}
+    \end{center}
+    
+    \vfill
 
     \begin{center}
         \begin{tcolorbox}[
             colback=red!5,
             colframe=red!75!black,
             title=Provocação Metodológica,
-            width=0.98\textwidth,
-            top=2pt, bottom=2pt, % Compacta o espaço interno vertical
-            middle=2pt
+            width=0.95\textwidth,
+            top=2pt, bottom=2pt
         ]
             \centering 
-            \small \textbf{Como vamos discutir a complexidade da análise de desempenho se não sabemos como funciona o motor do algoritmo?}
+            \small \textbf{Como vamos discutir a complexidade da análise de desempenho se não sabemos como funciona o motor do algoritmo?} 
         \end{tcolorbox}
+    \end{center}
+\end{frame}
+
+% --- Slide 4: A Matriz de Dados (A Realidade) ---
+\begin{frame}{A Ilusão do Domínio: A Realidade dos Dados Brutos}
+    \begin{center}
+        \includegraphics[height=7cm, keepaspectratio]{images/terminal_xxd.png}
+    \end{center}
+\end{frame}
+
+% --- Slide 5: O Hype / O Falso Domínio ---
+\begin{frame}{Separando o \textit{Hype} da Ciência: O Falso Domínio}
+    \begin{center}
+        \includegraphics[height=4.2cm, keepaspectratio]{neobullshit.png}
+        
+        \vspace{0.2cm}
+        \textbf{O \textit{Hype} Tecnológico} \\
+        \small O perigo das ``caixas pretas'' e promessas mágicas sem validação.
+    \end{center}
+\end{frame}
+
+% --- Slide 6: A Ciência / O Desafio Real ---
+\begin{frame}{Separando o \textit{Hype} da Ciência: O Pálido Ponto Azul}
+    \begin{center}
+        \includegraphics[height=4.2cm, keepaspectratio]{Pale_Blue_Dot.png}
+        
+        \vspace{0.2cm}
+        \textbf{O Pálido Ponto Azul} \\
+        \small O rigor metodológico: encontrar e rastrear o sinal (\textit{pixel}) verdadeiro no meio do ruído cósmico (ou da quadra).
     \end{center}
 \end{frame}
 
@@ -83,6 +161,42 @@
         \item \textbf{Movimentos Complexos:} Desenvolvimento de \textit{pipelines} próprios (baseados em \textit{MediaPipe}) para quantificação da cinemática 2D em exercícios como o agachamento \cite{pereira2025markerless}.
     \end{itemize}
 \end{frame}
+
+% --- Slide Novo: Capa do Artigo Vieira et al. (2022) ---
+\begin{frame}{Nossa Publicação: \textit{Markerless} no Futebol}
+    \begin{center}
+        \includegraphics[height=6.5cm, keepaspectratio]{vieira_capa.png}
+    \end{center}
+\end{frame}
+
+
+% --- Slide Novo: Imagens do Artigo Vieira et al. (2022) ---
+\begin{frame}{Validação em Cenário Real: O Chute no Futebol}
+    \begin{itemize}
+        \item Comparação visual do método \textit{markerless} automático contra a digitalização manual 3D tradicional \cite{vieira2022automatic}.
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    
+    \begin{columns}[c] % Alinhamento centralizado das colunas
+        
+        % Coluna Esquerda: Primeira Figura
+        \begin{column}{0.5\textwidth}
+            \begin{center}
+                \includegraphics[width=0.95\textwidth, keepaspectratio]{vieira_imag1.png}
+            \end{center}
+        \end{column}
+        
+        % Coluna Direita: Segunda Figura
+        \begin{column}{0.5\textwidth}
+            \begin{center}
+                \includegraphics[width=0.95\textwidth, keepaspectratio]{vieira_imag2.png}
+            \end{center}
+        \end{column}
+        
+    \end{columns}
+\end{frame}
+
 
 \begin{frame}{O Paradigma Tradicional vs. Validade Ecológica}
     \begin{columns}
@@ -103,14 +217,6 @@
             \end{itemize}
         \end{column}
     \end{columns}
-\end{frame}
-
-\begin{frame}{De onde viemos: LaBioCoM e a Pesquisa Aplicada}
-    \begin{itemize}
-        \item O Laboratório de Biomecânica e Controle Motor (LaBioCoM).
-        \item Nossa missão: transpor o rigor do laboratório para a beira do campo.
-        \item A aproximação entre a academia e as demandas reais do alto rendimento.
-    \end{itemize}
 \end{frame}
 
 \begin{frame}{O Paradigma Tradicional vs. Validade Ecológica}
@@ -275,6 +381,12 @@
     \normalsize \textbf{Prof. Dr. Paulo Santiago} \\
     \normalsize EEFERP-USP / LaBioCoM \\
     \href{https://github.com/paulopreto/CompVison_ML_MovSport_2026_USP}{}
+\end{frame}
+
+% --- Slide de Referências ---
+\begin{frame}[allowframebreaks]{Referências}
+    \bibliographystyle{apalike} % Estilo da citação (ex: apalike, IEEEtran, etc)
+    \bibliography{references}   % Chama o seu arquivo references.bib
 \end{frame}
 
 \end{document}

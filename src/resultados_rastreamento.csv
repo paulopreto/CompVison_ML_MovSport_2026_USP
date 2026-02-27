@@ -1,0 +1,3 @@
+arquivo_imagem,modelo_rede,x_predito,y_predito,x_pixel,y_pixel
+img_001.png,modelo_rastreador.pth,5.7808,5.9552,6,6
+img_001.png,modelo_rastreador.pth,5.7808,5.9552,6,6

@@ -216,27 +216,6 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{O Paradigma Tradicional vs. Validade Ecológica}
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \textbf{Padrão-Ouro (Laboratório)}
-            \begin{itemize}
-                \item Captura com marcadores (ex: Vicon).
-                \item Alta precisão, mas restrito ao ambiente controlado.
-                \item Invasivo e inviável em situação de jogo.
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            \textbf{Demanda Ecológica (Campo)}
-            \begin{itemize}
-                \item Avaliação durante o treino ou competição.
-                \item Necessidade de respostas rápidas para a comissão técnica.
-                \item \textit{A "dor" do clube}: ter horas de vídeo, mas poucos dados acionáveis.
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
 
 % ==========================================
 % BLOCO 2: O Arsenal Tecnológico
@@ -257,22 +236,72 @@
         \item O desafio da oclusão constante em desportos coletivos.
         \item Associações temporais e espaciais para manter a identidade do atleta ao longo do vídeo.
     \end{itemize}
-    % Sugestão: Inserir um GIF/Vídeo curto do YOLO plotando as bounding boxes nos atletas
     \begin{center}
-        \textit{[Inserir Vídeo/GIF do YOLO rastreando atletas aqui]}
+        \includegraphics[height=4.0cm, keepaspectratio]{images/yolo_sayno.png}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}{Detecção e Rastreamento com YOLO}
+    \begin{center}
+        \includegraphics[height=5.0cm, keepaspectratio]{images/drone_comercial.png}
+        
+        \vspace{0.2cm}
+        \small \textit{Faça o tracking aí então!}
     \end{center}
 \end{frame}
 
+
+\begin{frame}{Detecção e Rastreamento com YOLO}
+    \begin{center}
+        \includegraphics[height=5.0cm, keepaspectratio]{images/drone_i9.png}
+        
+        \vspace{0.2cm}
+        \small \textit{E agora!}
+
+    \end{center}
+\end{frame}
+
+% --- Slide: Estimativa de Pose com MediaPipe ---
 \begin{frame}{Estimativa de Pose com MediaPipe}
     \begin{itemize}
         \item Modelagem do esqueleto 2D e 3D diretamente da imagem.
         \item Cálculo de ângulos articulares, velocidades e assimetrias na marcha/corrida.
         \item Da imagem bruta para o modelo biomecânico: validando os pontos anatômicos.
     \end{itemize}
-    % Sugestão: Inserir um GIF do MediaPipe
+
     \begin{center}
-        \textit{[Inserir Vídeo/GIF do MediaPipe extraindo o esqueleto de um atleta]}
+        \includegraphics[height=5.0cm, keepaspectratio]{pk_binha2.png}
+        
+        \vspace{0.2cm}
+        \small \textit{Extração automatizada de esqueleto e pontos anatômicos em tempo real.}
     \end{center}
+\end{frame}
+% --- Slide: As Limitações do "Out-of-the-Box" ---
+\begin{frame}{Quando o Padrão Falha: Limites do MediaPipe}
+    \begin{itemize}
+        \item \small \textbf{Instabilidade Técnica:} A instabilidade dos parâmetros em algoritmos padrões, que gera ``esqueletos fantasmas'', justifica a necessidade do LaBioCoM em assumir o controle total do algoritmo para garantir a precisão biomecânica.
+    \end{itemize}
+
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{center}
+                \includegraphics[height=3.8cm, keepaspectratio]{pk_binha2.png}
+                
+                \vspace{0.1cm}
+                \scriptsize \textit{\textcolor{red}{\faExclamationTriangle} Limitação de Framework:\\Ruído de predição.}
+            \end{center}
+        \end{column}
+        
+        \begin{column}{0.5\textwidth}
+            \begin{center}
+                \includegraphics[height=3.8cm, keepaspectratio]{pk_binha1.png}
+                
+                \vspace{0.1cm}
+                \scriptsize \textit{\textcolor{red}{\faExclamationTriangle} Falha de detecção:\\Alvo muito pequeno (Small).}
+            \end{center}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 % ------------------------------------------
@@ -288,7 +317,7 @@
 
 \begin{frame}{Como uma CNN Enxerga}
     \begin{center}
-        \includegraphics[height=4.8cm, keepaspectratio]{cnn.png}
+        \includegraphics[height=4.0cm, keepaspectratio]{cnn.png}
     \end{center}
     
     \vspace{0.2cm}
@@ -300,12 +329,17 @@
     \end{itemize}
 \end{frame}
 
+% --- Slide: PyTorch para Visão Computacional ---
 \begin{frame}{PyTorch para Visão Computacional}
     \begin{itemize}
         \item Framework dominante em Visão Computacional e \textit{Machine Learning} pela flexibilidade do grafo dinâmico e facilidade de experimentação.
         \item Ecossistema robusto com \texttt{torchvision}: \textit{datasets}, modelos pré-treinados e \textit{transforms} prontos para uso.
         \item Forte integração com pesquisa e produção: do experimento no laboratório ao deploy em servidores e dispositivos embarcados.
     \end{itemize}
+
+    \begin{center}
+        \includegraphics[height=2.5cm, keepaspectratio]{images/pytorch.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}{Ecossistema de Visão no PyTorch}
@@ -355,44 +389,32 @@
     \end{itemize}
 \end{frame}
 
-
 % ==========================================
 % BLOCO 3: Mão na Massa, Projetos Nacionais e Ferramentas Abertas
 % ==========================================
 \section{Mão na Massa: Validações Científicas do LaBioCoM}
 
-\begin{frame}{Rastreamento \textit{Markerless} em Cenários Reais}
-    \begin{itemize}
-        \item \textbf{Desportos de Combate:} Validação do \textit{OpenPose} para estimar a posição e movimentação de atletas de Taekwondo em área oficial de combate \cite{banks2024accuracy}.
-        \item \textbf{Futebol de Campo:} Método automático e não invasivo de \textit{machine learning} (baseado em \textit{OpenPose}) validado contra a digitalização manual 3D para a análise cinemática do chute \cite{vieira2022automatic}.
-        \item A transição bem-sucedida dos laboratórios fechados para o ambiente natural (\textit{in the wild}).
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Validação Clínica e Acesso Aberto}
-    \begin{itemize}
-        \item \textbf{Cinemática 2D:} Desenvolvimento e validação de um \textit{pipeline} baseado em pixels, rodando o \textit{MediaPipe}, para quantificar movimentos de membros inferiores no agachamento \cite{pereira2025markerless}.
-        \item Uma alternativa consistente e de baixo custo para auxiliar a tomada de decisão clínica e desportiva onde a captura de movimento tradicional não está disponível.
-        \item A força da ciência aberta (\textit{open-source}) para reduzir a desigualdade tecnológica e fomentar o desenvolvimento nacional.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{O \textit{vailá} Multimodal Toolbox \cite{santiago2024vaila}}
-    \begin{itemize}
-        \item Um ecossistema em \textit{Python} desenvolvido para solucionar a complexidade da integração de dados biomecânicos.
-        \item O \textit{vailá} liberta o pesquisador e o analista de desempenho das "caixas pretas" do mercado.
-    \end{itemize}
-    
-
-\end{frame}
-
-\begin{frame}[fragile]{O \textit{vailá} Multimodal Toolbox}
-    \begin{itemize}
-        \item Desenvolvido para resolver o "pesadelo" da integração de dados cinemáticos e dinâmicos de diferentes fontes.
-        \item Uma solução prática, em Python, para organizar pipelines de pesquisa biomecânica.
-    \end{itemize}
-    
-\href{https://github.com/vaila-multimodaltoolbox/vaila}{vailá}
+\begin{frame}[fragile]{\textit{vailá} Multimodal Toolbox: Integração e Liberdade \cite{santiago2024vaila}}
+    \begin{columns}[c]
+        \begin{column}{0.55\textwidth}
+            \begin{itemize}
+                \item Ecossistema \textit{open-source} em \textit{Python} que resolve a complexidade da integração de dados biomecânicos.
+                \item Liberta o pesquisador e o analista das ``caixas pretas'' e do ``pesadelo'' de sincronizar diferentes fontes.
+            \end{itemize}
+            
+            \vspace{0.3cm}
+            \centering
+            \begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, boxsep=1pt, left=2pt, right=2pt, top=2pt, bottom=2pt]
+                \centering \footnotesize \faGithub \hspace{1mm} \href{https://github.com/vaila-multimodaltoolbox/vaila}{github.com/vaila-multimodaltoolbox/vaila}
+            \end{tcolorbox}
+        \end{column}
+        
+        \begin{column}{0.45\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth, keepaspectratio]{vaila.png}
+            \end{center}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 
@@ -422,21 +444,7 @@
     \end{center}
 \end{frame}
 
-\begin{frame}{Fusão Multimodal e Dispositivos IoT}
-    \begin{itemize}
-        \item A Visão Computacional não trabalha sozinha.
-        \item Sincronização de dados de vídeo com \textit{wearables}, sensores inerciais e dispositivos instrumentados (ex: blocos de partida IoT).
-        \item O panorama completo do esforço e desempenho do atleta no cenário real.
-    \end{itemize}
-\end{frame}
 
-\begin{frame}{Identificação de Talentos e Simulações Computacionais}
-    \begin{itemize}
-        \item Aplicação de \textit{machine learning} na identificação segura de talentos esportivos.
-        \item O conceito de \textit{safe deselection}: cruzando evidências empíricas e simulações para evitar perdas de atletas com potencial de maturação tardia.
-        \item A tecnologia reduzindo vieses humanos no processo de seleção.
-    \end{itemize}
-\end{frame}
 
 \begin{frame}
     \begin{center}
@@ -452,12 +460,31 @@
         \end{tcolorbox}
     \end{center}
 \end{frame}
+
+
+% --- Slide Final: Agradecimentos ---
 \begin{frame}[standout]
-    Obrigado! \\
-    \vspace{1em}
+    {\huge Obrigado!} \\
+    
+    \vspace{1.5em}
+    
     \normalsize \textbf{Prof. Dr. Paulo Santiago} \\
-    \normalsize EEFERP-USP / LaBioCoM \\
-    \href{https://github.com/paulopreto/CompVison_ML_MovSport_2026_USP}{}
+    \small EEFERP-USP / LaBioCoM \\
+    
+    \vspace{1.5em}
+    
+    \begin{center}
+        \begin{tcolorbox}[
+            colback=blue!5, 
+            colframe=blue!75!black, 
+            width=0.8\textwidth,
+            arc=2mm,
+            auto outer arc
+        ]
+            \centering
+            \small \faGithub \hspace{1mm} \href{https://github.com/paulopreto}{github.com/paulopreto}
+        \end{tcolorbox}
+    \end{center}
 \end{frame}
 
 % --- Slide de Referências ---

@@ -41,11 +41,8 @@
     \end{itemize}
 \end{frame}
 
-% --- Slide Novo 1: A Analogia do Motor ---
 \begin{frame}{A Ilusão do Domínio: Somos Apertadores de Botões?}
-    \begin{columns}[T] % Alinhamento pelo topo para maximizar o espaço vertical
-        
-        % Coluna da Esquerda: Texto
+    \begin{columns}[T]
         \begin{column}{0.65\textwidth}
             \begin{itemize}
                 \item Temos a facilidade de comprar o \textit{software} mais caro e o \textit{hardware} mais moderno.
@@ -54,14 +51,12 @@
             \end{itemize}
         \end{column}
         
-        % Coluna da Direita: Imagem reduzida
-        \begin{column}{0.30\textwidth}
-            \begin{center}
-                \includegraphics[height=3.2cm, keepaspectratio]{pauloef_perdido.png}
-            \end{center}
+        \begin{column}{0.35\textwidth}  % aumentei um pouco para usar melhor o espaço
+            \centering
+            \includegraphics[height=6.2cm, keepaspectratio]{pauloef_perdido.png}
         \end{column}
-        
     \end{columns}
+\end{frame}
 
     \vfill % Empurra a caixa para a extremidade inferior
 
@@ -205,18 +200,7 @@
         \item O \textit{vailá} liberta o pesquisador e o analista de desempenho das "caixas pretas" do mercado.
     \end{itemize}
     
-\begin{lstlisting}[caption={Exemplo de uso nativo da nossa biblioteca}]
-import vaila as vl
 
-# Carregando dados multimodais
-dataset = vl.load_multimodal_data("coleta_atleta_01.csv")
-
-# Sincronizando os sinais cinematicos e cineticos
-dataset_sync = vl.synchronize_signals(dataset)
-
-# Aplicando modelos biomecanicos abertos
-metricas = vl.calculate_joint_angles(dataset_sync)
-\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{O \textit{vailá} Multimodal Toolbox}
@@ -225,19 +209,7 @@ metricas = vl.calculate_joint_angles(dataset_sync)
         \item Uma solução prática, em Python, para organizar pipelines de pesquisa biomecânica.
     \end{itemize}
     
-\begin{lstlisting}[language=Python, caption={Exemplo simplificado de uso do vailá}]
-import vaila as vl
-
-# Carregando dados multimodais (Ex: cinemetria + plataforma de força)
-dataset = vl.load_multimodal_data("coleta_atleta_01.csv")
-
-# Sincronizando os sinais e aplicando filtro passa-baixa
-dataset_sync = vl.synchronize_signals(dataset)
-dataset_filtered = vl.apply_butterworth(dataset_sync, cutoff=10, fs=200)
-
-# Calculando variáveis biomecânicas de interesse
-metricas = vl.calculate_joint_angles(dataset_filtered)
-\end{lstlisting}
+\href{https://github.com/vaila-multimodaltoolbox/vaila}{vailá}
 \end{frame}
 
 

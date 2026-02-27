@@ -41,41 +41,6 @@
     \end{itemize}
 \end{frame}
 
-% --- Slide 1: A Crítica ao Consumo Passivo ---
-\begin{frame}{A Ilusão do Domínio: Somos Apertadores de Botões?}
-    \begin{columns}[T]
-        \begin{column}{0.65\textwidth}
-            \begin{itemize}
-                \item Temos a facilidade de comprar o \textit{software} mais caro e o \textit{hardware} mais moderno[cite: 88].
-                \item \textbf{O Problema:} Sabemos onde clicar, mas não sabemos o que acontece no ``silício''[cite: 89].
-                \item \textit{Analogia da Memória:} Tratamos a tecnologia como uma caixa preta de \textit{bits} consumíveis, não como geração de conhecimento[cite: 90].
-            \end{itemize}
-        \end{column}
-        
-        \begin{column}{0.35\textwidth}
-            \centering
-            \includegraphics[height=5cm, keepaspectratio]{pauloef_perdido.png}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-% --- Slide 1: A Crítica ao Consumo Passivo ---
-\begin{frame}{A Ilusão do Domínio: Somos Apertadores de Botões?}
-    \begin{columns}[T]
-        \begin{column}{0.65\textwidth}
-            \begin{itemize}
-                \item Temos a facilidade de comprar o \textit{software} mais caro e o \textit{hardware} mais moderno.
-                \item \textbf{O Problema:} Sabemos onde clicar, mas não sabemos o que acontece no ``silício''.
-                \item \textit{Analogia da Memória:} Tratamos a tecnologia como uma caixa preta de \textit{bits} consumíveis, não como geração de conhecimento.
-            \end{itemize}
-        \end{column}
-        
-        \begin{column}{0.35\textwidth}
-            \centering
-            \includegraphics[height=5.5cm, keepaspectratio]{pauloef_perdido.png}
-        \end{column}
-    \end{columns}
-\end{frame}
 
 % --- Slide 1: A Crítica ao Consumo Passivo ---
 \begin{frame}{A Ilusão do Domínio: Somos Apertadores de Botões?}
@@ -197,6 +162,36 @@
     \end{columns}
 \end{frame}
 
+
+\begin{frame}{Código Aberto: Entendendo o Motor na Prática}
+    \begin{itemize}
+        \item Para romper a cultura da "caixa preta", todo o código discutido aqui é \textit{open-source}.
+        \item Desenvolvemos um \textit{pipeline} completo em \textit{Python} (utilizando \textit{PyTorch}) para provar o conceito básico de \textit{Deep Learning}.
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    
+    \textbf{O que você encontrará no repositório:}
+    \begin{itemize}
+        \item \textbf{Geração de Dados:} Construção de matrizes e \textit{datasets} sintéticos (\texttt{generate\_dataset.py}).
+        \item \textbf{O Treinamento:} Uma Rede Neural Convolucional (CNN) feita do zero para prever coordenadas espaciais (\texttt{trainblack7x7.py}).
+        \item \textbf{A Inferência:} Ferramentas de terminal (CLI) para testar o rastreamento em novas imagens (\texttt{predictblackdot.py}).
+    \end{itemize}
+    
+    \vspace{0.4cm}
+    
+    \begin{center}
+        \begin{tcolorbox}[
+            colback=blue!5,
+            colframe=blue!75!black,
+            title=Acesse, Clone e Modifique:,
+            boxsep=2pt, top=4pt, bottom=4pt, width=0.98\textwidth
+        ]
+            \centering
+            \small \url{https://github.com/paulopreto/CompVison_ML_MovSport_2026_USP/tree/main/src}
+        \end{tcolorbox}
+    \end{center}
+\end{frame}
 
 \begin{frame}{O Paradigma Tradicional vs. Validade Ecológica}
     \begin{columns}

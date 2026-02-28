@@ -104,7 +104,7 @@
         
         \vspace{0.2cm}
         \textbf{O \textit{Hype} Tecnológico} \\
-        \small O perigo das ``caixas pretas'' e promessas mágicas sem validação.
+        \small O perigo das ``caixas pretas'' e promessas mágicas sem validação e que você não é dono.
     \end{center}
 \end{frame}
 
@@ -283,7 +283,7 @@
 % --- Slide: As Limitações do "Out-of-the-Box" ---
 \begin{frame}{Quando o Padrão Falha: Limites do MediaPipe}
     \begin{center}
-        \includegraphics[height=4.5cm, keepaspectratio]{pk_binha1.png}
+        \includegraphics[height=4.5cm, keepaspectratio]{images/paper1_holanda.png}
         
         \vspace{0.3cm}
         \small \textit{\textcolor{red}{\faExclamationTriangle} \textbf{Falha de detecção:} Objeto/Alvo muito pequeno (Small) para os modelos pré-treinados padrão.}
@@ -412,12 +412,12 @@
         \item Adaptação das últimas camadas para o seu \textit{dataset} esportivo (fine-tuning parcial ou total).
     \end{itemize}
 \end{frame}
-
 % ==========================================
 % BLOCO 3: Mão na Massa, Projetos Nacionais e Ferramentas Abertas
 % ==========================================
 \section{Mão na Massa: Validações Científicas do LaBioCoM}
 
+% --- Slide: vailá Multimodal Toolbox ---
 \begin{frame}[fragile]{\textit{vailá} Multimodal Toolbox: Integração e Liberdade \cite{santiago2024vaila}}
     \begin{columns}[c]
         \begin{column}{0.55\textwidth}
@@ -435,35 +435,54 @@
         
         \begin{column}{0.45\textwidth}
             \begin{center}
-                \includegraphics[width=\textwidth, keepaspectratio]{vaila.png}
+                % Logo principal em destaque
+                \includegraphics[width=0.7\textwidth, keepaspectratio]{vaila.png}
+                                
+                % Logos da stack técnica propositalmente pequenos
+                \begin{center}
+                    \includegraphics[height=0.9cm]{images/python.png} \hspace{0.4cm}
+                    \includegraphics[height=0.9cm]{images/rust.png}
+                \end{center}
             \end{center}
         \end{column}
     \end{columns}
 \end{frame}
 
-
 % ==========================================
 % BLOCO 4: Perspectivas e Futuro
 % ==========================================
 \section{A Fronteira do Conhecimento e Perspectivas}
-
+% --- Slide: A Provocação do VAR Semiautomático ---
 \begin{frame}{A Provocação do VAR Semiautomático}
     \begin{itemize}
-        \item A \textit{Premier League} adotou dezenas de \textit{smartphones} comuns para a Tecnologia de Impedimento Semiautomático (SAOT).
-        \item \textbf{A Provocação:} Se a liga mais rica do mundo extrai métricas de elite usando celulares, o segredo não é o \textit{hardware} de 100 mil dólares, é o \textbf{algoritmo}.
-        \item \textit{Se é possível fazer com um celular de prateleira, nós também podemos fazer aqui!}
+        \item \small A \textit{Premier League} adotou dezenas de \textit{smartphones} comuns para a Tecnologia de Impedimento Semiautomático (SAOT).
+        \item \small \textbf{A Provocação:} Se a liga mais rica do mundo extrai métricas de elite usando celulares, o segredo não é o \textit{hardware} de 100 mil dólares, é o \textbf{algoritmo}.
+        \item \small \textit{Se é possível fazer com um celular de prateleira, nós também podemos fazer aqui!}
     \end{itemize}
-    
-    \vspace{0.4cm}
-    \textbf{Veja na prática:} \\
+
+    \begin{columns}[c]
+        \begin{column}{0.48\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth, height=3.0cm, keepaspectratio]{images/variphone.png}
+                \vspace{0.1cm} \\ \scriptsize \textit{Smartphones na borda do campo.}
+            \end{center}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth, height=3.0cm, keepaspectratio]{images/markerlessvariphone.png}
+                \vspace{0.1cm} \\ \scriptsize \textit{Rastreamento markerless em tempo real.}
+            \end{center}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \centering
     \scriptsize
-    \url{https://www.youtube.com/watch?v=af6P0P25HQk} \\
-    \url{https://www.youtube.com/shorts/kxUme_SgOzc}
-    
-    \vspace{0.4cm}
+    \url{https://youtu.be/af6P0P25HQk} \quad \url{https://youtube.com/shorts/kxUme_SgOzc}
+
     \begin{center}
-        \begin{tcolorbox}[colback=blue!5,colframe=blue!75!black,boxsep=2pt, top=2pt, bottom=2pt, width=0.95\textwidth]
-            \centering \small O diferencial competitivo migrou da câmera para a inteligência em \textit{software}.
+        \begin{tcolorbox}[colback=blue!5,colframe=blue!75!black,boxsep=1pt, top=2pt, bottom=2pt, width=0.98\textwidth]
+            \centering \footnotesize O diferencial competitivo migrou da câmera para a inteligência em \textit{software}.
         \end{tcolorbox}
     \end{center}
 \end{frame}

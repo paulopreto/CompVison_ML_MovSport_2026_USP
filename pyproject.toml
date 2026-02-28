@@ -26,6 +26,7 @@ dependencies = [
     "pillow>=9.0",
     "torch>=2.0",
     "matplotlib>=3.5",
+    "onnxscript>=0.2.0",
 ]
 
 [project.optional-dependencies]

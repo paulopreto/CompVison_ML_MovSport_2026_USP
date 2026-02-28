@@ -6,9 +6,10 @@
 
 % --- CHAMA O PACOTE DE ESTILO CUSTOMIZADO ---
 \usepackage{preto}
+\usepackage{fontawesome5}
 
-% Caminho para as imagens 
-\graphicspath{{./images/}}
+% Caminho para as imagens (images/ e src/ para diagrama da rede)
+\graphicspath{{./images/}{./src/}}
 
 % --- Informações da Capa ---
 \title{Visão Computacional e Deep Learning na Análise do Movimento de Atletas}
@@ -186,7 +187,7 @@
         \begin{tcolorbox}[
             colback=blue!5,
             colframe=blue!75!black,
-            title=Acesse, Clone e Modifique:,
+            title={Acesse, Clone e Modifique:},
             boxsep=2pt, top=4pt, bottom=4pt, width=0.98\textwidth
         ]
             \centering
@@ -277,31 +278,16 @@
         \small \textit{Extração automatizada de esqueleto e pontos anatômicos em tempo real.}
     \end{center}
 \end{frame}
+
+
 % --- Slide: As Limitações do "Out-of-the-Box" ---
 \begin{frame}{Quando o Padrão Falha: Limites do MediaPipe}
-    \begin{itemize}
-        \item \small \textbf{Instabilidade Técnica:} A instabilidade dos parâmetros em algoritmos padrões, que gera ``esqueletos fantasmas'', justifica a necessidade do LaBioCoM em assumir o controle total do algoritmo para garantir a precisão biomecânica.
-    \end{itemize}
-
-    \begin{columns}[t]
-        \begin{column}{0.5\textwidth}
-            \begin{center}
-                \includegraphics[height=3.8cm, keepaspectratio]{pk_binha2.png}
-                
-                \vspace{0.1cm}
-                \scriptsize \textit{\textcolor{red}{\faExclamationTriangle} Limitação de Framework:\\Ruído de predição.}
-            \end{center}
-        \end{column}
+    \begin{center}
+        \includegraphics[height=4.5cm, keepaspectratio]{pk_binha1.png}
         
-        \begin{column}{0.5\textwidth}
-            \begin{center}
-                \includegraphics[height=3.8cm, keepaspectratio]{pk_binha1.png}
-                
-                \vspace{0.1cm}
-                \scriptsize \textit{\textcolor{red}{\faExclamationTriangle} Falha de detecção:\\Alvo muito pequeno (Small).}
-            \end{center}
-        \end{column}
-    \end{columns}
+        \vspace{0.3cm}
+        \small \textit{\textcolor{red}{\faExclamationTriangle} \textbf{Falha de detecção:} Objeto/Alvo muito pequeno (Small) para os modelos pré-treinados padrão.}
+    \end{center}
 \end{frame}
 
 % ------------------------------------------
@@ -327,6 +313,44 @@
         \item \textit{Pooling}: reduz a dimensão e concentra a informação relevante.
         \item Camadas totalmente conectadas: transformam \textit{features} em decisão (classes, coordenadas, probabilidades).
     \end{itemize}
+\end{frame}
+
+% --- Slides: O que é a rede do repositório (visualização didática e diagrama) ---
+\begin{frame}{O que é a rede do repositório? RastreadorDePontoCNN}
+    \textbf{Objetivo didático:} uma CNN pequena que recebe uma imagem 7×7 em escala de cinza e prediz as coordenadas $(x, y)$ do ponto preto.
+    \vspace{0.25cm}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \textbf{Estrutura (fluxo dos dados):}
+            \begin{itemize}
+                \item \textbf{Entrada:} 1 canal, 7×7.
+                \item \textbf{Bloco convolucional:} duas Conv2d (1→8, 8→16, kernel 3×3) + ReLU.
+                \item \textbf{Bloco denso:} Flatten (784) → Linear 784→32 → ReLU → Linear 32→2.
+                \item \textbf{Saída:} dois números (coordenadas $x$, $y$).
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Como ``ver'' a rede na prática:}\\[0.2cm]
+            O script \texttt{visualizar\_rede.py} do repositório:
+            \begin{itemize}
+                \item Imprime no terminal a estrutura em texto (camadas, formas dos tensores, total de parâmetros).
+                \item Gera um diagrama em PNG do fluxo das camadas para uso em aula.
+                \item Opcionalmente exporta o modelo para ONNX (visualização no Netron).
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \vspace{0.3cm}
+    \centering
+    \small \faTerminal\ \texttt{uv run visualizar\_rede.py -m modelo\_rastreador.pth}
+\end{frame}
+
+\begin{frame}{Visualização da rede: diagrama gerado pelo script}
+    \begin{center}
+        \includegraphics[width=\textwidth, keepaspectratio]{diagrama_rastreador_rede.png}
+    \end{center}
+    \vspace{0.2cm}
+    \centering
+    \small Diagrama produzido por \texttt{visualizar\_rede.py}; cada caixa é uma camada e as setas indicam o fluxo da informação (esquerda $\rightarrow$ direita).
 \end{frame}
 
 % --- Slide: PyTorch para Visão Computacional ---
@@ -444,26 +468,51 @@
     \end{center}
 \end{frame}
 
+% --- Slide Novo: Relatividade e o Eclipse ---
+\begin{frame}{Confirmação da Relatividade Geral: O Papel da História}
+    \begin{columns}[T]
+        \begin{column}{0.62\textwidth}
+            \scriptsize
+            A 1ª Guerra Mundial (1914-1918) impediu a primeira tentativa de validação da teoria de Einstein:
+            \vspace{0.1cm}
+            \begin{itemize}
+                \item \textbf{1914 (Fracasso):} Erwin Freundlich liderou expedição à Crimeia. A eclosão da guerra causou a prisão da equipe pelos russos, abortando a missão.
+                \item \textbf{A ``Sorte'' de Einstein:} Em 1914, os cálculos de Einstein ainda estavam incompletos. O fracasso evitou que dados imprecisos refutassem a teoria prematuramente.
+                \item \textbf{1915:} Einstein finaliza as equações da Relatividade Geral.
+                \item \textbf{1919 (Sucesso):} Arthur Eddington lidera expedições a \textbf{Sobral (Brasil)} e Ilha do Príncipe, confirmando o desvio da luz solar e validando Einstein mundialmente.
+            \end{itemize}
+        \end{column}
+        
+        \begin{column}{0.38\textwidth}
+            \centering
+            \includegraphics[height=2.0cm, keepaspectratio]{images/einsten_100anos.png}
+            \vspace{0.2cm}
+            
+            \includegraphics[height=3.0cm, keepaspectratio]{images/einsten.png}
+        \end{column}
+    \end{columns}
+\end{frame}
 
-
+% --- Slide Final: Conclusão ---
 \begin{frame}
+    \vspace{1cm}
     \begin{center}
         \begin{tcolorbox}[
             colback=green!5,
             colframe=green!50!black,
-            title=\textit{Take-home Message},
-            width=0.95\textwidth,
-            boxsep=5pt, top=8pt, bottom=8pt
+            title=\centering \textit{Take-home Message},
+            width=0.9\textwidth,
+            boxsep=4pt, top=10pt, bottom=10pt
         ]
-            \centering \Large 
-            A inteligência artificial e a visão computacional não substituem o treinador; elas fornecem a lente de precisão para a sua intuição e experiência.
+            \centering \Large \bfseries
+            A IA e a Visão Computacional não substituem o treinador; elas fornecem a lente de precisão para a sua intuição e experiência.
         \end{tcolorbox}
     \end{center}
 \end{frame}
 
-
 % --- Slide Final: Agradecimentos ---
-\begin{frame}[standout]
+\begin{frame}
+    \centering
     {\huge Obrigado!} \\
     
     \vspace{1.5em}
@@ -482,7 +531,7 @@
             auto outer arc
         ]
             \centering
-            \small \faGithub \hspace{1mm} \href{https://github.com/paulopreto}{github.com/paulopreto}
+            \small \faGithub \hspace{1mm} \href{https://github.com/paulopreto/CompVison_ML_MovSport_2026_USP}{https://github.com/paulopreto/CompVison\_ML\_MovSport\_2026\_USP}
         \end{tcolorbox}
     \end{center}
 \end{frame}

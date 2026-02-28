@@ -38,6 +38,7 @@ Todos os scripts aceitam `-h` ou `--help` para exibir a ajuda na linha de comand
 | `makedataset.py` | Gera dataset sintético (N imagens 7x7 + CSV de labels). |
 | `trainblack7x7.py` | Treina a CNN para regredir (x, y) do ponto e salva o modelo `.pth`. |
 | `predictblackdot.py` | Carrega o modelo e uma imagem e prediz as coordenadas do ponto. |
+| `visualizar_rede.py` | Visualização didática da rede: resumo em texto (camadas, pesos) e diagrama PNG para uso em aula. |
 | `png2raw.py` | Converte uma imagem PNG para arquivo RAW (bytes brutos). |
 
 ### 1. Demonstração didática (matriz e bits)
@@ -77,7 +78,24 @@ python predictblackdot.py -i dataset_pontos/img_000.png -n modelo_rastreador.pth
 python predictblackdot.py --help
 ```
 
-### 5. Converter PNG para RAW
+### 5. Visualizar a rede (uso em aula)
+
+Para entender a arquitetura e os pesos do modelo `.pth` de forma legível (texto + diagrama):
+
+```bash
+cd src
+python visualizar_rede.py -m modelo_rastreador.pth
+python visualizar_rede.py -m modelo_rastreador.pth -o diagrama_rede.png
+python visualizar_rede.py --sem-diagrama
+python visualizar_rede.py --export-onnx modelo.onnx
+python visualizar_rede.py --help
+```
+
+- **Resumo em texto**: estrutura da rede (camadas e fluxo), nomes e formatos dos tensores no `state_dict`, total de parâmetros.
+- **Diagrama PNG**: fluxo visual das camadas (Entrada → Conv → ReLU → … → Saída) para projetar em aula.
+- **Export ONNX**: opcional; use `--export-onnx modelo.onnx` e abra o arquivo em [netron.app](https://netron.app) para uma visão interativa.
+
+### 6. Converter PNG para RAW
 
 ```bash
 cd src

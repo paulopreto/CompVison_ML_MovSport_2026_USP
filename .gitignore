@@ -1,0 +1,63 @@
+# Ambientes virtuais Python
+.venv/
+venv/
+env/
+.env/
+
+# Bytecode e caches Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+
+# Testes e ferramentas
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# LaTeX / Beamer (arquivos auxiliares de compilação)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.nav
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.lof
+*.lot
+
+# IDEs e editores
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Variáveis de ambiente e segredos
+.env
+.env.local
+*.local
+
+# Opcional: descomente se não quiser versionar PDFs gerados
+# *.pdf

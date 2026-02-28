@@ -19,9 +19,9 @@ A provocação central desta palestra é: **Como vamos discutir a complexidade d
 O arquivo `main.tex` está dividido em quatro blocos narrativos:
 
 1. **O Contexto e a Dor do Esporte:** A soberania tecnológica, a ilusão do domínio das "caixas pretas" e o rigor de encontrar o verdadeiro sinal no meio do ruído (O Pálido Ponto Azul).
-2. **O Arsenal Tecnológico:** Como as Redes Neurais Profundas viabilizaram a *Markerless Motion Capture*. O uso de arquiteturas como YOLO (detecção) e MediaPipe (estimativa de pose).
+2. **O Arsenal Tecnológico:** Como as Redes Neurais Profundas viabilizaram a *Markerless Motion Capture*. O uso de arquiteturas como YOLO (detecção) e MediaPipe (estimativa de pose). Inclui também slides que explicam a rede do repositório (RastreadorDePontoCNN) com o diagrama gerado pelo script `visualizar_rede.py`.
 3. **Mão na Massa — Validações do LaBioCoM:** Resultados científicos práticos provando que a tecnologia aberta funciona no cenário real (*in the wild*), incluindo futebol de campo, desportos de combate, movimentos complexos de força e a apresentação do **vailá Multimodal Toolbox**.
-4. **Fronteira do Conhecimento:** A provocação do VAR Semiautomático via smartphones, a fusão de Visão Computacional com dispositivos IoT, simulações para identificação de talentos (*safe deselection*) e a mensagem final.
+4. **A Fronteira do Conhecimento e Perspectivas:** A provocação do VAR Semiautomático via smartphones, a fusão de Visão Computacional com dispositivos IoT, simulações para identificação de talentos (*safe deselection*) e a mensagem final.
 
 ---
 
@@ -49,8 +49,10 @@ pdflatex main.tex
 - **`main.tex`** — O arquivo principal com o conteúdo dos slides.
 - **`preto.sty`** — O pacote de estilos com as configurações de rodapé, formatação de código Python e cores personalizadas do LaBioCoM.
 - **`references.bib`** — O banco de referências (BibTeX) com os artigos citados durante a palestra.
-- **`images/`** — Diretório contendo todas as figuras, GIFs e logomarcas.
+- **`images/`** — Diretório contendo figuras, GIFs e logomarcas. Algumas figuras (como o diagrama da rede) vêm de **`src/`** (ex.: `src/diagrama_rastreador_rede.png`), geradas pelos scripts Python.
 - **`utils/`** — Contém versões já compiladas do PDF da apresentação.
+
+A apresentação cita e utiliza os scripts de `src/` (treino, inferência e visualização da rede); os slides da CNN mostram o diagrama produzido por `visualizar_rede.py`.
 
 ---
 
@@ -59,10 +61,11 @@ pdflatex main.tex
 Para provar que é possível construir essa tecnologia do zero, este repositório conta com a pasta `src/`. Lá você encontrará scripts em Python (usando PyTorch) que:
 
 - Geram um dataset sintético de imagens.
-- Constroem e treinam uma Rede Neural Convolucional (CNN) simples.
+- Constroem e treinam uma Rede Neural Convolucional (CNN) simples (RastreadorDePontoCNN).
 - Fazem a inferência para rastrear as coordenadas de um objeto na imagem.
+- **Visualizam a rede de forma didática:** o script `visualizar_rede.py` exibe a arquitetura em texto (camadas, pesos) e gera um diagrama PNG do fluxo das camadas; esse diagrama é usado nos slides da apresentação para explicar a CNN em aula.
 
-**Leia o [README da pasta `src/`](src/README.md) para entender o código passo a passo.**
+**Leia o [README da pasta `src/`](src/README.md) para entender o código passo a passo e os comandos de cada script.**
 
 ---
 

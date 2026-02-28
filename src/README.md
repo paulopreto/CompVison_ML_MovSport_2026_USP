@@ -2,7 +2,7 @@
 
 Este diretório (`src`) contém uma série de *scripts* em Python criados para desmistificar a Inteligência Artificial e a Visão Computacional. O objetivo prático é demonstrar, do zero, como um computador enxerga uma imagem (como uma matriz numérica) e como treinamos uma Rede Neural Convolucional (CNN) para rastrear um objeto — neste caso, um ponto preto em uma matriz 7x7.
 
-Ao invés de usar "caixas pretas" prontas do mercado, aqui nós construímos o algoritmo, geramos os dados, treinamos o modelo e fazemos a inferência.
+Ao invés de usar "caixas pretas" prontas do mercado, aqui nós construímos o algoritmo, geramos os dados, treinamos o modelo e fazemos a inferência. O diagrama gerado por `visualizar_rede.py` é utilizado nos slides da apresentação ([main.tex](../main.tex) na raiz do repositório) para explicar a arquitetura da RastreadorDePontoCNN em aula.
 
 ---
 
@@ -24,7 +24,7 @@ source .venv/bin/activate   # Linux/macOS
 pip install -r requirements.txt
 ```
 
-Pacotes necessários: `numpy`, `pillow`, `torch`, `matplotlib`.
+Pacotes necessários: `numpy`, `pillow`, `torch`, `matplotlib`, `onnxscript` (para exportação ONNX com `visualizar_rede.py --export-onnx`).
 
 ---
 
@@ -132,3 +132,4 @@ python predictblackdot.py -i dataset_pontos/img_000.png -n modelo_rastreador.pth
 - `makedataset.py` → pasta `dataset_pontos/` (ou a que você indicar) com `img_*.png` e `labels.csv`
 - `trainblack7x7.py` → `modelo_rastreador.pth` (ou o nome indicado em `-o`)
 - `predictblackdot.py` → atualiza/gera `resultados_rastreamento.csv`
+- `visualizar_rede.py` → `diagrama_rastreador_rede.png` (ou o nome indicado em `-o`); com `--export-onnx`, gera também o arquivo `.onnx` indicado

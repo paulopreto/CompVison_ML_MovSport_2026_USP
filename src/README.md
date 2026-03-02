@@ -11,6 +11,7 @@ Ao invés de usar "caixas pretas" prontas do mercado, aqui nós construímos o a
 Na **raiz do repositório** existem `pyproject.toml` e `requirements.txt`. Instale as dependências de uma das formas:
 
 ```bash
+Recomendo usar o uv..
 # Opção 1: requirements.txt (a partir da raiz do projeto)
 pip install -r requirements.txt
 

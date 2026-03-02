@@ -1,6 +1,6 @@
 # O Motor da Visão Computacional: Do Pixel à Rede Neural
 
-Este diretório (`src`) contém uma série de *scripts* em Python criados para desmistificar a Inteligência Artificial e a Visão Computacional. O objetivo prático é demonstrar, do zero, como um computador enxerga uma imagem (como uma matriz numérica) e como treinamos uma Rede Neural Convolucional (CNN) para rastrear um objeto — neste caso, um ponto preto em uma matriz 7x7.
+Este diretório (`src`) contém uma série de _scripts_ em Python criados para desmistificar a Inteligência Artificial e a Visão Computacional. O objetivo prático é demonstrar, do zero, como um computador enxerga uma imagem (como uma matriz numérica) e como treinamos uma Rede Neural Convolucional (CNN) para rastrear um objeto — neste caso, um ponto preto em uma matriz 7x7.
 
 Ao invés de usar "caixas pretas" prontas do mercado, aqui nós construímos o algoritmo, geramos os dados, treinamos o modelo e fazemos a inferência. O diagrama gerado por `visualizar_rede.py` é utilizado nos slides da apresentação ([main.tex](../main.tex) na raiz do repositório) para explicar a arquitetura da RastreadorDePontoCNN em aula.
 
@@ -11,7 +11,9 @@ Ao invés de usar "caixas pretas" prontas do mercado, aqui nós construímos o a
 Na **raiz do repositório** existem `pyproject.toml` e `requirements.txt`. Instale as dependências de uma das formas:
 
 ```bash
-Recomendo usar o uv..
+# Recomendo usar o uv pyproject.toml <https://docs.astral.sh/uv/>
+uv sync
+
 # Opção 1: requirements.txt (a partir da raiz do projeto)
 pip install -r requirements.txt
 
@@ -33,14 +35,14 @@ Pacotes necessários: `numpy`, `pillow`, `torch`, `matplotlib`, `onnxscript` (pa
 
 Todos os scripts aceitam `-h` ou `--help` para exibir a ajuda na linha de comando.
 
-| Script | Descrição |
-|--------|-----------|
-| `img7x7.py` | Cria imagem 7x7 com pixel central preto; mostra matriz no terminal e opcionalmente gráfico. |
-| `makedataset.py` | Gera dataset sintético (N imagens 7x7 + CSV de labels). |
-| `trainblack7x7.py` | Treina a CNN para regredir (x, y) do ponto e salva o modelo `.pth`. |
-| `predictblackdot.py` | Carrega o modelo e uma imagem e prediz as coordenadas do ponto. |
+| Script               | Descrição                                                                                        |
+| -------------------- | ------------------------------------------------------------------------------------------------ |
+| `img7x7.py`          | Cria imagem 7x7 com pixel central preto; mostra matriz no terminal e opcionalmente gráfico.      |
+| `makedataset.py`     | Gera dataset sintético (N imagens 7x7 + CSV de labels).                                          |
+| `trainblack7x7.py`   | Treina a CNN para regredir (x, y) do ponto e salva o modelo `.pth`.                              |
+| `predictblackdot.py` | Carrega o modelo e uma imagem e prediz as coordenadas do ponto.                                  |
 | `visualizar_rede.py` | Visualização didática da rede: resumo em texto (camadas, pesos) e diagrama PNG para uso em aula. |
-| `png2raw.py` | Converte uma imagem PNG para arquivo RAW (bytes brutos). |
+| `png2raw.py`         | Converte uma imagem PNG para arquivo RAW (bytes brutos).                                         |
 
 ### 1. Demonstração didática (matriz e bits)
 
@@ -134,3 +136,47 @@ python predictblackdot.py -i dataset_pontos/img_000.png -n modelo_rastreador.pth
 - `trainblack7x7.py` → `modelo_rastreador.pth` (ou o nome indicado em `-o`)
 - `predictblackdot.py` → atualiza/gera `resultados_rastreamento.csv`
 - `visualizar_rede.py` → `diagrama_rastreador_rede.png` (ou o nome indicado em `-o`); com `--export-onnx`, gera também o arquivo `.onnx` indicado
+
+## Pipeline completo (para iniciantes)
+
+Este pipeline permite que um usuário sem experiência execute todo o fluxo de forma sequencial. Siga os passos abaixo:
+
+1. **Instalar dependências**
+
+   ```bash
+   cd src
+   uv sync   # ou pip install -r ../requirements.txt
+   ```
+
+2. **Visualizar a imagem como matriz**
+
+   ```bash
+   python img7x7.py --no-show
+   ```
+
+3. **Gerar dataset sintético**
+
+   ```bash
+   python makedataset.py -n 10   # cria 10 imagens de exemplo
+   ```
+
+4. **Treinar a rede**
+
+   ```bash
+   python trainblack7x7.py -e 5 -o modelo_teste.pth
+   ```
+
+5. **Realizar inferência**
+   ```bash
+   python predictblackdot.py -i dataset_pontos/img_000.png -n modelo_teste.pth
+   ```
+
+### Comando tudo‑em‑um
+
+Para executar tudo de uma vez, copie e cole o comando abaixo em um terminal limpo:
+
+```bash
+cd src && uv sync && python img7x7.py --no-show && python makedataset.py -n 10 && python trainblack7x7.py -e 5 -o modelo_teste.pth && python predictblackdot.py -i dataset_pontos/img_000.png -n modelo_teste.pth
+```
+
+> **Dica:** Use um ambiente virtual (`python -m venv .venv && source .venv/bin/activate`) antes de rodar o pipeline para evitar conflitos de dependências.

@@ -8,7 +8,7 @@ Ao invés de usar "caixas pretas" prontas do mercado, aqui nós construímos o a
 
 ## Dependências
 
-Na **raiz do repositório** existem `pyproject.toml` e `requirements.txt`. Instale as dependências de uma das formas:
+Neste diretório existem `pyproject.toml` e `requirements.txt`. Instale as dependências de uma das formas:
 
 ```bash
 # Recomendo usar o uv pyproject.toml <https://docs.astral.sh/uv/>
@@ -112,7 +112,7 @@ python png2raw.py --help
 
 ```bash
 cd src
-pip install -r ../requirements.txt   # se ainda não instalou
+pip install -r requirements.txt   # se ainda não instalou
 
 # 1) Ver a imagem como matriz (didático)
 python img7x7.py --no-show
@@ -145,7 +145,7 @@ Este pipeline permite que um usuário sem experiência execute todo o fluxo de f
 
    ```bash
    cd src
-   uv sync   # ou pip install -r ../requirements.txt
+   uv sync   # ou pip install -r requirements.txt
    ```
 
 2. **Visualizar a imagem como matriz**
@@ -176,7 +176,7 @@ Este pipeline permite que um usuário sem experiência execute todo o fluxo de f
 Para executar tudo de uma vez, copie e cole o comando abaixo em um terminal limpo:
 
 ```bash
-cd src && uv sync && python img7x7.py --no-show && python makedataset.py -n 10 && python trainblack7x7.py -e 5 -o modelo_teste.pth && python predictblackdot.py -i dataset_pontos/img_000.png -n modelo_teste.pth
+cd src && uv sync && uv run python img7x7.py --no-show && uv run python makedataset.py -n 10 && uv run python trainblack7x7.py -e 5 -o modelo_teste.pth && uv run python predictblackdot.py -i dataset_pontos/img_000.png -n modelo_teste.pth
 ```
 
 > **Dica:** Use um ambiente virtual (`python -m venv .venv && source .venv/bin/activate`) antes de rodar o pipeline para evitar conflitos de dependências.
